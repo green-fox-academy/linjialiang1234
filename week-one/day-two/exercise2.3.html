@@ -9,15 +9,17 @@
         <style>
                 #content{
                     margin: 0px auto;
-                    width: 1000px;
+                    width: 100%;
                     height: 600px;
         
                 }
         
-                nav{
-                    background-color: purple
-        
-        
+                header{
+                    background-color: purple;
+                    display: inline-block;
+                    width: 100%;
+                    position: fixed;
+                    z-index: 10;
                 }
                 
                 ul{
@@ -33,19 +35,37 @@
                     
                 }
         
-                section{
+                #maincontent{
+                    width: 90%;
+                    position: absolute;
+                    top:15%;
+                    left:5%;
+
+
+                }
+                main{
                     width: 75%;
                     height: 500px;
                     background-color: yellow;
-                    float:left;
+                    float:right;
         
                 }
         
                 aside{
-                    width: 25%;
+                    width: 24.3%;
                     height: 500px;
                     background-color: green;
-                    float: right;
+                    float: left;
+
+                }
+
+                footer{
+                    background-color: gray;
+                    width:100%;
+                    height:100px;
+                    float: left;
+                    margin: 5px 0px;
+
                 }
         
         </style>        
@@ -53,25 +73,25 @@
 
     <body>
             <div id="content">
-                    <nav>
+                    <header>
                         <ul>
                             <li><a href="" title=""></a></li>
                             <li><a href="" title=""></a></li>
                             <li><a href="" title=""></a></li>
-                
-                
-                
+                            <li><a href="" title=""></a></li>
                         </ul>
-                    </nav>
+                    </header>
                 
-                    <div>
-                        <section>
-                        </section>
+                    <div id="maincontent">
+                        <main>
+                        </main>
                         
-                        <aside>
-                            
+                        <aside>  
                         </aside>
+                    
+                        <footer></footer>
                     </div>
+                    
             </div>       
     
     </body>
