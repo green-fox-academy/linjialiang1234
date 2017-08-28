@@ -7,79 +7,84 @@
         <link href="css/style.css" rel="stylesheet">
 
         <style>
-
-            div{
-                width: 100%;
+            .container{
+                width: 1000px;
                 height:600px;
-
+                margin: 0px auto;
             }
-
             header{
                 background-color: lightblue;
-                width: 100%;
-                height: 20%;
-
+                width: 1000px;
+                height: 150px;
             }
-
-         
-            #orangeAside{
-                width:300px;
-                height:60%;
+           .orangeAside{
+                position:absolute;
+                left:0;
+                top:0;
+                width:150px;
+                height:300px;
                 background-color: orange;
-                float: left; 
-
-
 
             }
+             .purpleAside{
+                position:absolute;
+                right:0;
+                top:0;
+                width: 150px;
+                height: 300px;
+                background-color: purple;
+              
+            }
+
+            .mainBody{
+                position: relative;
+            }
+
 
             main{
-                width: 50%;
-                height: 60%;
+                width: 500px;
+                height: 300px;
                 background-color: red;
-                margin: 0px 32.2px; 
-                float:left;
+                margin: 0px 250px; 
                 position: relative;
-
             }
-
             content{
                 width: 60px;
                 height: 60px;
                 background-color: black;
                 position: absolute;
-                top: 80%;
+                top: 70%;
                 right: 10%;
                 
             }
-
-            #purpleAside{
-
-                width: 300px;
-                height: 60%;
-                background-color: purple;
-                float: right;
-
-
-
-            }
-        
+       
             footer{
-                width: 100%;
-                height: 20%;
+                width: 1000px;
+                height: 150px;
                 background-color: blue;
-                float:left;
+     
             }
         </style>
     </head>
     <body>
 
-        <div>
+        <div class="container">
 
         <header></header>
 
-        <aside id="orangeAside"></aside>
-        <main><content></content></main>
-        <aside id="purpleAside"></aside>
+        <div class="mainBody clearfix">
+            <div class="orangeAside">
+                
+            </div>
+             <main>
+                <content>
+                 
+                    </content>
+                </main>
+            <div class="purpleAside">
+                
+            </div>
+        </div>
 
         <footer></footer>
 
