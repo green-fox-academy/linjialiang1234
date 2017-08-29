@@ -13,6 +13,7 @@
     border-right: 1px solid;
     position: absolute;
     left: 0px;
+    z-index: 10px;
     
 }
 
@@ -33,7 +34,8 @@
 }
 
 #mainBody header nav {
-    float: right;
+    position: absolute;
+    right: 0%;
     /* background-color: grey; */
     padding: 0px;
     
@@ -50,10 +52,30 @@
 #headerDown {
     /* background-color: green; */
     /* height: 30%; */
-    clear: both;
+    /* clear: both; */
     position: absolute;
-    border: 5px solid red;
+    border-bottom: 1px solid black;
+    width: 100%;
+    left: 0%;
+    top: 50px;
+    /* display: inline; */
+    
+}
 
+#headerDown div {
+    display: inline;
+}
+
+.headerDownLeftList {
+    float: left;
+    border-right: 1px solid;
+    padding: 0px 5px;     
+}
+
+.headerDownRightList {
+    float: right;
+    border-left: 1px solid;
+    padding: 0px 5px;
 }
 
 /* .clearfix::after {
@@ -65,34 +87,35 @@
 
 #leftlinks_header  {
     /* background-color: #8FC83B; */
-    position: absolute;
-    left: 0px;
+    /* position: absolute; */
+    /* left: 0px; */
 }
-
+/* 
 #leftlinks_header li {
     display: inline;
     /* border-left: 1px solid; */
-    border-right: 1px solid;
-    padding-right: 5px;
+    /* border-right: 1px solid;
+    padding-right: 5px; */
     /* background-color: purple; */
-}
+/* } */ 
 
 
-#rightlinks_header {
+/* #rightlinks_header {
     /* background-color:  #6078A1; */
-    position: absolute;
-    right: 0px;
+    /* position: absolute; */
+    /* right: 0px; */
     
-}
+/* } */ 
 
-#rightlinks_header li {
+/* #rightlinks_header li,
+#rightlinks_header li input  {
     /* background-color: blue; */
-    display:  inline;
-    border-left: 1px solid;
+    /* display:  inline;
+    border-left: 1px solid; */
     /* border-right: 1px solid; */
-    padding: 0px 5px;
+    /* padding: 0px 5px; */
     
-}
+/* }  */
 
 #logo{
     text-align: center;
@@ -167,12 +190,16 @@
  #margaretContentImg table {
      width: 20%;
  }
+
+ #margaretContentImg table tr{
+     /* text-align: initial; */
+ }
  #margaretContentImg table th {
      vertical-align: top;
  }
 
  #margaretContentImg table td {
-     text-align: justify;
+     /* text-align: */
  }
 
  
