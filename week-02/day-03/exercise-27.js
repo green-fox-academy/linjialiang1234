@@ -9,9 +9,8 @@
 // - In `colors[2]` store the shades of pink:
 //   `"orchid", "violet", "pink", "hot pink"`
 
-var colors = [][];
-colors[0] = "";
-colors[0].push("lime", "forest green", "olive", "pale green", "spring green");
-console.log("123" + typeof (colors[0]));
-console.log(colors[1]);
-console.log(colors[2]);
+var colors = []
+
+console.log(colors[0])
+console.log(colors[1])
+console.log(colors[2])
