@@ -26,10 +26,16 @@ function numOfCandies(para) {
 
 var ageResult = 0;
 function sum(para){
-  para.map(function(ele){
-    return ele.candies < 10? ageResult += parseInt(ele.age):""
-  });
+  for(var i = 0; i < para.length; i++){
+    if(para[i].candies < 5){
+
+      ageResult = ageResult + para[i].age;
+
+    }
+  }
+
+  return ageResult;
 }
-// numOfCandies(students);
+numOfCandies(students);
 
 console.log(sum(students));
