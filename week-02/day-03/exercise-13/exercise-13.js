@@ -10,5 +10,4 @@ var al = "EPAM";
 function greet(para = "all"){
 	console.log("Greetings, deer " + para);
 }
-
 greet();

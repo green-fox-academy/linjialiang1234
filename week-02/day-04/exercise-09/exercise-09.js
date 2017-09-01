@@ -16,10 +16,8 @@ var students = [
 // - Sum of the age of people who have lass than 5 candies
 
 function numOfCandies(para) {
-
   para.map(function(ele){
     return console.log(ele.candies + " candies are owned by " + ele.name );
-    
   })
 
 }
@@ -28,14 +26,10 @@ var ageResult = 0;
 function sum(para){
   for(var i = 0; i < para.length; i++){
     if(para[i].candies < 5){
-
       ageResult = ageResult + para[i].age;
-
     }
   }
-
   return ageResult;
 }
 numOfCandies(students);
-
 console.log(sum(students));

@@ -20,7 +20,7 @@ var fullPercentage = percentage.repeat(lineCount);
 for(var i = 0; i < lineCount; i++){
     var restPercentage = "";    
     for(var j = 0; j < lineCount; j++){
-        if(j == 0 || j == i || j == (lineCount - 1)){
+        if(j === 0 || j === i || j === lineCount - 1){
             restPercentage = restPercentage.concat(percentage);
 
         }
@@ -28,8 +28,7 @@ for(var i = 0; i < lineCount; i++){
             restPercentage = restPercentage.concat(" ");
         }
     }
-
-    if( i == 0 || i == (lineCount - 1)){
+    if( i == 0 || i == lineCount - 1){
         console.log(fullPercentage);
     }else{
         console.log(restPercentage);

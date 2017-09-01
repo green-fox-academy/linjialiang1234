@@ -19,12 +19,8 @@ function numOfCandies(para) {
     if(para[i].candies > 4){
        resultName.push(para[i].name);
     }
-   
-
   }
-
   return resultName;
- 
 }
 
 var averageResult = 0;
@@ -32,9 +28,7 @@ function sum(para){
   for(var i = 0; i < para.length; i++){
    averageResult += para[i].age;
   }
-  
   return averageResult = averageResult/para.length;
-
 }
 console.log(numOfCandies(students));
 

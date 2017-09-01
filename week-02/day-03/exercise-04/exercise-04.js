@@ -21,7 +21,6 @@ var number = 15;
 // 10 * 15 = 150
 
 for(var i = 1; i <= 10; i++){
-
 	var result = i * number;
 	console.log(i + " * " + number + " = " + result );
 }

@@ -6,6 +6,5 @@ for(var i = 0; i < 3; i++){
   var newLi = document.createElement("li");
   newLi.textContent = "TheFox";
   ul.appendChild(newLi);
-
 }
 

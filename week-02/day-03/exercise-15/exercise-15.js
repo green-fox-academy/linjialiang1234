@@ -11,5 +11,4 @@ function sum(para){
 	}
 	return result;
 }
-
 console.log(sum(5));

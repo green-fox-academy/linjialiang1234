@@ -34,7 +34,6 @@ var isBonus = false;
 // if credits are smaller than 50,
 // and isBonus is false decrement c by 1
 // if isBonus is true c should remain the same
-
 console.log(c);
 
 var d = 8;
@@ -46,10 +45,10 @@ var out3 = '';
 // if time is more than 200
 // set out3 to "Time out"
 // otherwise set out3 to "Run Forest Run!"
-if((d % 4  == 0) && (time < 200)){
+if(d % 4  == 0 && time < 200){
     out3 = "check";
 }
-else if ((d % 4  == 0) && (time >= 200)){
+else if (d % 4  == 0 && time >= 200){
     out3 = "Time out";
 }
 else{

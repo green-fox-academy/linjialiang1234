@@ -9,6 +9,5 @@ var order = [];
 for(var i = 0; i < girls.length; i++){
   order.push(girls[i]);
   order.push(boys[i]);
-
 }
 console.log(order);

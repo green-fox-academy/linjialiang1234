@@ -15,5 +15,4 @@ var str = ""
 for(var i = 1; i <= lineCount; i++){
  	var sign = "*"
 	console.log(str += sign);
-	
 }

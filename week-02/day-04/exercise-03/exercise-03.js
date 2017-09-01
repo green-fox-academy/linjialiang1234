@@ -18,6 +18,6 @@ var hashmap = {
 };
 
 var out = notSoCrypticMessage.join(",").split(",").map(function(ele,i){
-  return  ele = hashmap[ele];});
-
+  return  ele = hashmap[ele];
+});
 console.log(out);

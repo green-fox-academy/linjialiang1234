@@ -10,7 +10,6 @@ for(var i = 0 ; i < businessLamp.length; i++) {
 }
 
 var conceitedKing = document.getElementsByClassName("container")[0].getElementsByTagName("div");
-
 for(var i = 0 ; i < conceitedKing.length; i++) {
 	alert(conceitedKing[i].textContent);
 }
@@ -21,6 +20,6 @@ for(var i = 0; i < noBusiness.length; i++){
 }
 
 var allBizniss = document.querySelector("p");
-	alert(allBizniss.textContent);
+alert(allBizniss.textContent);
 
 

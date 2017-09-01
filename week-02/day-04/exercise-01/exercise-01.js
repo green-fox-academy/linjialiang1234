@@ -11,10 +11,8 @@
 //      - Diablo
 
 var todoText = " - Buy milk\n";
-
 var begin = "My todo:\n";
 var second = " - Download games\n";
 var third = "     - Diablo";
-
 var result = begin.concat(todoText).concat(second).concat(third);
 console.log(result);

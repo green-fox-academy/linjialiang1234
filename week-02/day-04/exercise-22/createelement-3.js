@@ -9,5 +9,4 @@ for(var i = 0; i < list.length; i++){
   var newLi = document.createElement("li");
   newLi.textContent = list[i];
   ul.appendChild(newLi);
-
 }
