@@ -15,14 +15,43 @@ var accounts = [
 //  - balance
 //
 // Log "404 - account not found" if any of the account numbers don't exist to the console.
-function account (para) {
-  para.map(function(ele){
-    return console.log(ele.client_name + " " + ele.balance);
-  });
+function account(para){
+
+	for(var i = 0; i < para.length; i++){
+		console.log(para[i].client_name + " has the balance of " + para[i].balance +".");
+	}
 }
 account(accounts);
 
-function transfer(from, to, balance){
-  
+
+function transfer(from_account_number, to_account_number, balance){
+	console.log("Account number: " + from_account_number + " transfer " + balance + " to account number: " + to_account_number + "." );
+	var from_account_balance = 0;
+	var to_account_balance = 0;
+	for(var i = 0; i < accounts.length; i++){
+
+		if(accounts[i].account_number === from_account_number){
+
+			from_account_balance = accounts[i].balance -= balance;
+		}
+
+		if(accounts[i].account_number === to_account_number){
+			to_account_balance = accounts[i].balance += balance;
+		}
+
+
+
+	}
+
+	if(from_account_balance === 0 || to_account_balance === 0) {
+			return console.log('404 - account not found');
+		}
+
+	console.log("After transfered, account number: " + from_account_number + " has balance of " + from_account_balance + ".");
+	console.log("Account number: " + to_account_number + " has balance of " + to_account_balance + ".");
+
 }
 
+transfer(23456311, 43546731, 10);
+
+}
