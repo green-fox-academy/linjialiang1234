@@ -30,6 +30,7 @@ body {
 
 .leftArrowImage:hover{
   background-color: whitesmoke;
+  cursor: pointer;
 }
 
 .images {
@@ -86,6 +87,7 @@ body {
 
 .rightArrowImage:hover{
   background-color: whitesmoke;
+  cursor: pointer;
 }
 .thumbnails {
   /* border: 1px solid black; */
@@ -98,12 +100,13 @@ body {
 .thumbnails a {
   width: 60px;
   height: 60px;
-  border: 1px solid black;
+  border: 1px solid white;
   display:inline-block;
   margin-left: 4px;
   margin-top: 3px;
   padding: 5px;
 }
+
 
 .thumbnails a img {
   height: 60px;
@@ -116,5 +119,6 @@ body {
 
 .active, .dot:hover {
   background-color: #717171;
+  cursor: pointer;
 }
  
