@@ -1,5 +1,6 @@
 body {
-  background-color: #EEECF3;
+  background: linear-gradient(rgba(255, 255, 255, 0.90),#B3B0B9);
+  
 }
 
 .viewer {
@@ -8,6 +9,7 @@ body {
   height: 360px;
   margin: 100px auto;
   position: relative;
+  box-shadow: 10px 10px 5px #888888;
 }
 
 .leftarrow {
@@ -15,7 +17,8 @@ body {
   height: 100%;
   /* border: 1px solid rgb(0, 0, 0); */
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.90)
+  /* background-color: rgba(255, 255, 255, 0.90) */
+  background: linear-gradient(rgba(255, 255, 255, 0.90),#EEECF3);
   
 
 }
@@ -29,8 +32,9 @@ body {
 }
 
 .leftArrowImage:hover{
-  background-color: whitesmoke;
+  /* background-color: whitesmoke; */
   cursor: pointer;
+  opacity: 0.5;
 }
 
 .images {
@@ -45,7 +49,6 @@ body {
   height: 360px;
   width: 540px;
   /* border: 2px solid blue; */
-  
 }
 
 .photo img {
@@ -73,8 +76,8 @@ body {
   /* border: 1px solid black; */
   position: absolute;
   right:0%;
-  background-color: rgba(255, 255, 255, 0.90)
-  
+  /* background-color: rgba(255, 255, 255, 0.90) */
+  background: linear-gradient(rgba(255, 255, 255, 0.90),#EEECF3);
 
 }
 
@@ -86,8 +89,9 @@ body {
 } 
 
 .rightArrowImage:hover{
-  background-color: whitesmoke;
+  /* background-color: whitesmoke; */
   cursor: pointer;
+  opacity: 0.5;
 }
 .thumbnails {
   /* border: 1px solid black; */
@@ -105,6 +109,7 @@ body {
   margin-left: 4px;
   margin-top: 3px;
   padding: 5px;
+  background-color: #EEECF3;
 }
 
 

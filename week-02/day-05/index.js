@@ -1,12 +1,3 @@
-//  var leftArrow = document.getElementsByClassName("leftArrowImage");
-
-//  leftArrow[0].addEventListener("click",plusSlides(-1)
-// );
-
-// var rightArrow = document.getElementsByClassName("rightArrowImage");
-// rightArrow[0].addEventListener("click", plusSlides(1)
-// );
-
 var slideIndex = 1;
 showSlides(slideIndex);
  
