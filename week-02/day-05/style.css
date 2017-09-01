@@ -1,0 +1,120 @@
+body {
+  background-color: #EEECF3;
+}
+
+.viewer {
+  /* border: 1px solid black; */
+  width: 640px;
+  height: 360px;
+  margin: 100px auto;
+  position: relative;
+}
+
+.leftarrow {
+  width: 50px;
+  height: 100%;
+  /* border: 1px solid rgb(0, 0, 0); */
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.90)
+  
+
+}
+
+
+.leftarrow a {
+  position: absolute;
+  top: 50%;
+  left:25%;
+  /* transform: rotate(180deg); */
+}
+
+.leftArrowImage:hover{
+  background-color: whitesmoke;
+}
+
+.images {
+  width: 540px;
+  height: 360px;
+  /* border: 1px solid red; */
+  position: absolute;
+  left: 50px;
+}
+
+.photo {
+  height: 360px;
+  width: 540px;
+  /* border: 2px solid blue; */
+  
+}
+
+.photo img {
+  height: 100%;
+  width: 100%;
+}
+
+.description {
+  height: 100px;
+  width: 540px;
+  /* border: 1px solid yellow; */
+  position: absolute;
+  top: 260px;
+  background-color: black;
+  color:white;
+  opacity: 0.6;
+}
+
+.description h3, .description p {
+  margin-left: 10px;
+}
+.rightarrow {
+  width: 50px;
+  height: 100%;
+  /* border: 1px solid black; */
+  position: absolute;
+  right:0%;
+  background-color: rgba(255, 255, 255, 0.90)
+  
+
+}
+
+.rightarrow a {
+  position: absolute;
+  top: 50%;
+  right:25%;
+  transform: rotate(180deg);
+} 
+
+.rightArrowImage:hover{
+  background-color: whitesmoke;
+}
+.thumbnails {
+  /* border: 1px solid black; */
+  width: 400px;
+  height: 80px;
+  margin: -60px auto 0px;
+  position: relative;
+}
+
+.thumbnails a {
+  width: 60px;
+  height: 60px;
+  border: 1px solid black;
+  display:inline-block;
+  margin-left: 4px;
+  margin-top: 3px;
+  padding: 5px;
+}
+
+.thumbnails a img {
+  height: 60px;
+  width: 60px;
+}
+
+/* .img02, .img03, .img04, .img05 {
+  display: none;
+} */
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+ 
