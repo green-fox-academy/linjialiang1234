@@ -6,8 +6,6 @@ for(var i = 0; i < pClass.length; i++){
 
   if(pClass[3].classList.contains("dolphine")){
     pClass[0].innerHTML = "peer";
-
-
   }
 
   if(pClass[0].classList.contains("apple")){
