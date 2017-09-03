@@ -5,7 +5,13 @@
   <title>Workshop: Bookmarklets</title>
 </head>
 <body>
-  <a href="javascript:alert('nothing here yet!');">
+  <a href="javascript:(function(){
+    var h1 = document.querySelectorAll('h1');
+        for(var i = 0; i < h1.length; i++){
+            h1[i].textContent = 'Green Fox Academy Conquers the World';
+           }
+
+     })();">
     Bookmarklet 1
   </a>
   <h1>Antoine de Saint-Exupery's 110th Birthday</h1>
@@ -23,7 +29,7 @@
     with 'Green Fox Academy Conquers the World'.
     Create a bookmarklet that does that on any website.
   </script>
-  OR-->
-  <script src="./bookmarklet-1.js"></script> 
+  OR -->
+  <!-- <script src="bookmarklet-1.js"></script> -->
 </body>
 </html>
