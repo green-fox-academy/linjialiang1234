@@ -21,16 +21,14 @@ var pirates = [
 
 function PirateHorde(pirates){
   this.addPirate = function (name,gold,hasWoodenLeg){
-    this.name = name;
-    this.gold = gold;
-    this.hasWoodenLeg = hasWoodenLeg;
 
-    console.log("1" + this.name);
-    console.log("2" + this.gold);
-    console.log("3" + this.hasWoodenLeg);
-    pirates.name = this.name;
-    pirates.gold = this.gold;
-    pirates.hasWoodenLeg = this.hasWoodenLeg;
+    var obj = {
+    name: name,
+    gold: gold,
+    hasWoodenLeg: hasWoodenLeg
+    };
+
+    pirates.push(obj);
   };
 
   
@@ -38,7 +36,6 @@ function PirateHorde(pirates){
       var sumGold = 0;
       for(var i = 0; i< pirates.length; i++) {
        sumGold = sumGold + pirates[i].gold;
-        // return sumGold += pirates[i].gold;
       }
       return sumGold;
       
@@ -48,11 +45,8 @@ function PirateHorde(pirates){
       var longestName = "";
       for(var i = 0; i< pirates.length; i++) {
         if(pirates[i].name.length > lengthOFLongestName) {
-          console.log("123 " + pirates[i].name.length);
           lengthOFLongestName = pirates[i].name.length;
-          longestName = pirates[i].name;
-          console.log("longestname " + longestName);
-          
+          longestName = pirates[i].name;          
         }
       }
       return longestName;
