@@ -5,13 +5,12 @@
 var numbers = [1,2,3,4,5,6,8]
 
 numbers = numbers.every(function(ele){
-    ele === 7; 
+  ele === 7; 
 })
 
 if(numbers) {
   console.log("Hooray");
-}
-else {
+} else {
   console.log("Noooooo");
 }
 

@@ -9,7 +9,6 @@
 //  - Buy milk
 //  - Download games
 //      - Diablo
-
 var todoText = " - Buy milk\n";
 var begin = "My todo:\n";
 var second = " - Download games\n";

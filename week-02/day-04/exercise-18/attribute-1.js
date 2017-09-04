@@ -7,7 +7,6 @@ img.setAttribute("src", "https://s-media-cache-ak0.pinimg.com/736x/7c/5f/bf/7c5f
 var forUrl = document.querySelector("a");
 forUrl.setAttribute("href", "https://www.greenfoxacademy.com/" );
 
-
 var button = document.querySelector("button");
 button.setAttribute("disabled", "disabled");
 

@@ -31,5 +31,4 @@ function sum(para){
   return averageResult = averageResult/para.length;
 }
 console.log(numOfCandies(students));
-
 console.log(sum(students));

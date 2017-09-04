@@ -33,7 +33,7 @@ ul.removeChild(li);
 
 for(var i = 0; i < planetData.length; i++){
 	if (planetData[i].asteroid == true){
-		var newLi =document.createElement("li");
+		var newLi = document.createElement("li");
 		newLi.setAttribute("class", "planetData.[i].category");
 		console.log(planetData[i].content);
 		newLi.textContent = planetData[i].content;

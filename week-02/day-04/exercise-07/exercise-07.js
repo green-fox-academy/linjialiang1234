@@ -8,12 +8,9 @@ var shop_items = ["Cupcake", 2, "Brownie", false]
 shop_items = shop_items.map(function(ele){
   if(ele === 2){
     return ele = "Croissant";
-  }
-  else if(ele === false){
+  } else if(ele === false){
     return ele = "Ice cream";
-  }
-
-  else {
+  } else {
     return ele;
   }
 });

@@ -1,6 +1,6 @@
 var button = document.querySelector("button");
 
-button.addEventListener("click", function(e){
+button.addEventListener("click", function(e) {
 	var li = document.querySelectorAll("li");
 	var count = li.length;
 	console.log(count);

@@ -44,4 +44,3 @@ function transfer(from_account_number, to_account_number, balance){
 
 transfer(23456311, 43546731, 10);
 
-}
