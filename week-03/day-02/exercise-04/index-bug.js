@@ -12,10 +12,14 @@ var buttonElements = [
 });
 
 function appendButtons() {
-  for(var i = 0; i < buttonElements.length; i++) {
+  // var i;
+  for( var i = 0; i < buttonElements.length; i++) {
+
+    (function(i) {
     buttonElements[i].addEventListener('click', function() {
       console.log('button index: ', i);
-    });
+    })
+    })(i);
     document.body.appendChild(buttonElements[i]);
   }
 }
