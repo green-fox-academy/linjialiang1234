@@ -95,11 +95,11 @@ function SpaceX(storedFuel) {
     });
   };
   this.launchAll = function() {
-    let that = this;
+    // let that = this;
     rockets.forEach(function(ele) {
       ele.launch();
-      that.launcheNumber += 1;
-    })
+      this.launcheNumber += 1;
+    },this)
   };
   this.buyFuel = function(amount) {
     this.storedFuel += amount;
