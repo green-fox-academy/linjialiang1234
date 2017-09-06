@@ -13,14 +13,14 @@ function Animal() {
   }
 }
 
-// var abc = new Animal();
-// abc.eat();
-// abc.eat();
-// abc.drink();
-// abc.drink();
-// abc.play();
-// console.log("123" + abc.hunger_value);
-// console.log("123" + abc.thirst_value);
+// var animal = new Animal();
+// animal.eat();
+// animal.eat();
+// animal.drink();
+// animal.drink();
+// animal.play();
+// console.log(animal.hunger_value);
+// console.log(animal.thirst_value);
 
 function Farm() {
   var pig = new Animal ();
@@ -28,6 +28,5 @@ function Farm() {
   var chicken = new Animal ();
   this.slots = 5;
   this.breed = function() {
-
   }
 }

@@ -42,10 +42,6 @@ function CarStore(cars) {
   }
 }
 
-
-
-
-
 var cars = [{
     type: 'Dodge',
     price: 20000,

@@ -21,9 +21,9 @@ function Circle(radius) {
   }
 }
 
-// var abc = new Circle(9);
-// console.log(abc.toString());
-// console.log(abc.getCircumference());
-// console.log(abc.getArea());
+var circle = new Circle(9);
+console.log(circle.toString());
+console.log(circle.getCircumference());
+console.log(circle.getArea());
 
 

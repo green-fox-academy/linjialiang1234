@@ -6,60 +6,68 @@
 // It should have a "getLongestName" method that returns the name of the pirate that has the longest
 // It should have a "getTheWoodenLegNames" method that retuns the names of the pirates that has wooden leg
 
-
-
-
-var pirates = [
-  {name: 'Jack', gold: 4, hasWoodenLeg: true},
-  {name: 'Bob', gold: 0, hasWoodenLeg: false},
-  {name: 'Olaf', gold: 3, hasWoodenLeg: true},
-  {name: 'Steve', gold: 2, hasWoodenLeg: true},
-  {name: 'Ian', gold: 10, hasWoodenLeg: false},
+var pirates = [{
+    name: 'Jack',
+    gold: 4,
+    hasWoodenLeg: true
+  },
+  {
+    name: 'Bob',
+    gold: 0,
+    hasWoodenLeg: false
+  },
+  {
+    name: 'Olaf',
+    gold: 3,
+    hasWoodenLeg: true
+  },
+  {
+    name: 'Steve',
+    gold: 2,
+    hasWoodenLeg: true
+  },
+  {
+    name: 'Ian',
+    gold: 10,
+    hasWoodenLeg: false
+  },
 ];
 
-
-
-function PirateHorde(pirates){
-  this.addPirate = function (name,gold,hasWoodenLeg){
-
+function PirateHorde(pirates) {
+  this.addPirate = function (name, gold, hasWoodenLeg) {
     var obj = {
-    name: name,
-    gold: gold,
-    hasWoodenLeg: hasWoodenLeg
+      name: name,
+      gold: gold,
+      hasWoodenLeg: hasWoodenLeg
     };
-
     pirates.push(obj);
   };
-
-  
-  this.getSumGold = function() {
-      var sumGold = 0;
-      for(var i = 0; i< pirates.length; i++) {
-       sumGold = sumGold + pirates[i].gold;
-      }
-      return sumGold;
-      
+  this.getSumGold = function () {
+    var sumGold = 0;
+    for (var i = 0; i < pirates.length; i++) {
+      sumGold = sumGold + pirates[i].gold;
+    }
+    return sumGold;
   };
-  this.getLongestName = function() {
-      var lengthOFLongestName = 0;
-      var longestName = "";
-      for(var i = 0; i< pirates.length; i++) {
-        if(pirates[i].name.length > lengthOFLongestName) {
-          lengthOFLongestName = pirates[i].name.length;
-          longestName = pirates[i].name;          
-        }
+  this.getLongestName = function () {
+    var lengthOFLongestName = 0;
+    var longestName = "";
+    for (var i = 0; i < pirates.length; i++) {
+      if (pirates[i].name.length > lengthOFLongestName) {
+        lengthOFLongestName = pirates[i].name.length;
+        longestName = pirates[i].name;
       }
-      return longestName;
+    }
+    return longestName;
   }
-  this.getTheWoodenLegNames = function() {
-      var namesOfWoodenLeg = [];
-      for(var i =0; i < pirates.length; i++) {
-        if(pirates[i].hasWoodenLeg === true) {
-          namesOfWoodenLeg.push(pirates[i].name);
-        }
+  this.getTheWoodenLegNames = function () {
+    var namesOfWoodenLeg = [];
+    for (var i = 0; i < pirates.length; i++) {
+      if (pirates[i].hasWoodenLeg === true) {
+        namesOfWoodenLeg.push(pirates[i].name);
       }
-
-      return namesOfWoodenLeg;
+    }
+    return namesOfWoodenLeg;
   }
 }
 var pirateHorde = new PirateHorde(pirates);

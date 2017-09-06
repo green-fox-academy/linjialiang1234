@@ -7,5 +7,5 @@ function Sharpie(color, width){
   }
 }
 
-// var abc = new Sharpie("yellow", 30);
-// console.log(abc.use());
+var sharipie = new Sharpie("yellow", 30);
+console.log(sharipie.use());
