@@ -35,5 +35,3 @@ function display(pic) {
     picture.appendChild(image);
   }
 }
-xhr.open("GET", "http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=6c4feeab3b57475485c86a03a7222cfd", true);
-xhr.send();

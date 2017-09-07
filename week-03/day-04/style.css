@@ -1,0 +1,6 @@
+.singlePost div{
+  display: inline-block; 
+  color:red;
+  /* width: 500px; */
+  /* height: 50px */
+}

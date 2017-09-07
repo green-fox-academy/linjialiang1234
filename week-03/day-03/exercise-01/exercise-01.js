@@ -21,8 +21,19 @@
             animatedNewImage.src = result.data[i].images.original.url;
             var mainTag = document.querySelector("main");
       
-            document.querySelector("main").replaceChild(animatedNewImage);
+            document.querySelector("main")[0].replaceChild(animatedNewImage);
           });
+
+
+        //  stillNewImage.addEventListener("mouseover", function(event) {
+        //     event.target.src = result.data[i].images.original.url;      	
+        //   });
+        //   // div.appendChild(img);
+    
+        //   stillNewImage.addEventListener("mouseout", function(event) {
+        //     event.target.src = result.data[i].images.downsized_still.url;      	
+        //   }); 
+    
 
           var divTag = document.querySelector("div");
           console.log(divTag);
@@ -32,20 +43,9 @@
           
       }
 
-      // var animatedNewImage = document.createElement("img");
-      // animatedNewImage.src = result.data[0].images.original.url;
-      // var mainTag = document.querySelector("main");
-
-      // mainTag.appendChild(animatedNewImage);
+    
 
     }
   };
   xhttp.open("GET", "http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=6c4feeab3b57475485c86a03a7222cfd&limit=16", true);
   xhttp.send();
-
-  // var allImages = document.getElementsByClassName("img");
-
-  // console.log("222" + allImages[0]);
-  // allImages.addEventListener("click", function(event){
-  //   console.log("123");
-  // });
