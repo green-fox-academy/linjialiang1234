@@ -23,15 +23,18 @@ xhr.onreadystatechange = function () {
         var newDivInner = newDiv;
         
 
-
+        //first colum
         var newId = document.createElement("div");
         newId.innerHTML = result.posts[i].id;
         newId.id = "showId";
+        newId.className = "colum";
         newDiv.appendChild(newId);
         
 
-
+        //second colum
         var newDivScore = document.createElement("div");
+        newDivScore.id = "secondColum";
+        newDivScore.className = "colum";
         newDiv.appendChild(newDivScore);
 
         var newUpArrow = document.createElement("img");
@@ -46,8 +49,10 @@ xhr.onreadystatechange = function () {
         newDivScore.appendChild(newDownArrow);
         
 
-
+        //third colum
         var newDivTitle = document.createElement("div");
+        newDivTitle.id = "thirdColum";
+        newDivTitle.className = "colum";
         newDiv.appendChild(newDivTitle);
         
         var newTitle = document.createElement("div");
@@ -57,12 +62,19 @@ xhr.onreadystatechange = function () {
 
 
         var newTimeStamp = document.createElement("div");
-        newTimeStamp.innerHTML = result.posts[i].timestamp;
+        var newDate = new Date();
+        newDate.setTime(result.posts[i].timestamp * 1000);
+       
+        newTimeStamp.innerHTML =  newDate.toDateString();
         newTimeStamp.id = "showTimeStamp";
         newDivTitle.appendChild(newTimeStamp);
 
 
         var newOwner = document.createElement("div");
+        if(result.posts[i].owner === null){
+          result.posts[i].owner = "anonymous";
+        }
+
         newOwner.innerHTML = result.posts[i].owner;
         newOwner.id = "showOwner";
         newDivTitle.appendChild(newOwner);
