@@ -6,7 +6,7 @@ xhr.onreadystatechange = function () {
     console.log(result.posts);
     var getPostDiv = document.getElementsByClassName("post");
 
-    for (var i = 0; i < result.posts.length; i++) {
+    for (let i = 0; i < result.posts.length; i++) {
       var newDiv = document.createElement("div");
       newDiv.className = "singlePost";
       getPostDiv[0].appendChild(newDiv);
@@ -91,9 +91,43 @@ xhr.onreadystatechange = function () {
         var newRemove = document.createElement("a");
         newRemove.innerHTML = "Remove";
         newRemove.id = "showRemovev";
+
+        var deleteId = result.posts[i].id;
+        
+        newRemove.addEventListener("click", function removePost(){
+          console.log("dddd" + result.posts[i].id);
+          var deleteId = result.posts[i].id
+
+          
+              var xhr = new XMLHttpRequest();
+              
+              
+              xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                  var result = JSON.parse(xhr.responseText);
+                  console.log("success removed data: " + result);
+                }
+              }
+              xhr.open("DELETE", "https://time-radish.glitch.me/posts/"+deleteId, true);
+              // xhr.setRequestHeader("Accept", "application/json");
+              xhr.setRequestHeader("Content-type", "application/json");
+              xhr.send();
+        });
         newDivTitle.appendChild(newRemove);
       }
+
+
+
   }
+
+  // function removePost(deleteId){
+    
+  //   // var getDeleteId = this.getElementsByClassName("colum");
+  //   // var deleteNumber = getDeleteId[0].innerHTML;
+
+  
+
+  // }
 
 }
 
