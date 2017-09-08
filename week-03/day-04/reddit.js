@@ -43,6 +43,38 @@ xhr.onreadystatechange = function () {
 
       var newUpArrow = document.createElement("img");
       newUpArrow.src = "./images/upvote.png";
+      newUpArrow.addEventListener("click", function(){
+        console.log(newUpArrow.src);
+        console.log(newDownArrow.src);
+        if(newUpArrow.src == "file:///C:/Users/Leo_Lam/Desktop/Leo_Lam-EPAM-JS/week-03/day-04/images/upvote.png"){
+          console.log("inner" + newUpArrow.src);
+          
+          newUpArrow.src = "./images/upvoted.png";
+          newDownArrow.src = "./images/downvote.png";
+        }
+      
+         console.log("up id  " + result.posts[i].id);
+        console.log("up score" + result.posts[i].score);
+         var getId = result.posts[i].id;
+         var getScore = result.posts[i].score;
+          getScore += 1;
+          console.log("getscore +1 : " + getScore);
+         var xhr = new XMLHttpRequest();
+        
+         
+           xhr.onreadystatechange = function () {
+             if (xhr.readyState == 4 && xhr.status == 200) {
+               var result = JSON.parse(xhr.responseText);
+               console.log("success put add data: " + result);
+             }
+           }
+           xhr.open("PUT", "https://time-radish.glitch.me/posts/"+getId+"/upvote", true);
+           xhr.setRequestHeader("Accept", "application/json");
+           xhr.send();
+
+      });
+
+
       newDivScore.appendChild(newUpArrow);
       var newScore = document.createElement("div");
       newScore.innerHTML = result.posts[i].score;
@@ -50,6 +82,36 @@ xhr.onreadystatechange = function () {
       newDivScore.appendChild(newScore);
       var newDownArrow = document.createElement("img");
       newDownArrow.src = "./images/downvote.png";
+
+      newDownArrow.addEventListener("click", function(){
+        if(newDownArrow.src == "file:///C:/Users/Leo_Lam/Desktop/Leo_Lam-EPAM-JS/week-03/day-04/images/downvote.png"){
+          console.log("inner" + newUpArrow.src);
+          
+          newDownArrow.src = "./images/downvoted.png";
+          newUpArrow.src = "./images/upvote.png";
+         }
+
+         console.log("dddd id  " + result.posts[i].id);
+         console.log("dddd score" + result.posts[i].score);
+          var getId = result.posts[i].id;
+          var getScore = result.posts[i].score;
+           getScore -= 1;
+           console.log("getscore -1 : " + getScore);
+          var xhr = new XMLHttpRequest();
+         
+          
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState == 4 && xhr.status == 200) {
+                var result = JSON.parse(xhr.responseText);
+                console.log("success put down data: " + result);
+              }
+            }
+            xhr.open("PUT", "https://time-radish.glitch.me/posts/"+getId+"/downvote", true);
+            xhr.setRequestHeader("Accept", "application/json");
+            xhr.send();
+
+
+      });
       newDivScore.appendChild(newDownArrow);
       }
 
