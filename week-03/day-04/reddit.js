@@ -165,36 +165,59 @@ function createThirdColum(i,result,newDiv){
   newDiv.appendChild(newDivTitle);
 
   var newTitle = document.createElement("div");
-  newTitle.innerHTML = result.posts[i].title;
+  // newTitle.innerHTML = result.posts[i].title;
   newTitle.id = "showTitle";
   newDivTitle.appendChild(newTitle);
 
+  var newTitleLink = document.createElement("a");
+  newTitleLink.id = "showLink";
+  newTitleLink.href = result.posts[i].href;
+  newTitleLink.innerHTML =  result.posts[i].title;
+  newTitle.appendChild(newTitleLink);
+  
 
-  var newTimeStamp = document.createElement("div");
-  var newDate = new Date();
-  newDate.setTime(result.posts[i].timestamp * 1000);
 
-  newTimeStamp.innerHTML = newDate.toDateString();
+
+  var newTimeStamp = document.createElement("span");
+  // var newDate = new Date();
+  var timeResult = formatTime(result.posts[i].timestamp )
+  // newDate.setTime(result.posts[i].timestamp * 1000);
+
+  newTimeStamp.innerHTML = "submitted " + timeResult;
   newTimeStamp.id = "showTimeStamp";
   newDivTitle.appendChild(newTimeStamp);
 
 
-  var newOwner = document.createElement("div");
+  var newOwner = document.createElement("span");
   if (result.posts[i].owner === null) {
-    result.posts[i].owner = "anonymous";
+    result.posts[i].owner = " by anonymous";
   }
 
   newOwner.innerHTML = result.posts[i].owner;
   newOwner.id = "showOwner";
   newDivTitle.appendChild(newOwner);
 
+  var newBr = document.createElement("br");
+  newDivTitle.appendChild(newBr);
+
   var newModifty = document.createElement("a");
-  newModifty.innerHTML = "Modify";
+  newModifty.innerHTML = "Modify   ";
   newModifty.id = "showModify";
+
+  newModifty.addEventListener("click", function(){
+    localStorage.setItem("url", result.posts[i].href);
+    localStorage.setItem("title", result.posts[i].title);
+    localStorage.setItem("id", result.posts[i].id);
+
+
+    window.location.href= "./modify.html";
+  });
+
+
   newDivTitle.appendChild(newModifty);
 
   var newRemove = document.createElement("a");
-  newRemove.innerHTML = "Remove";
+  newRemove.innerHTML = "   Remove";
   newRemove.id = "showRemovev";
 
   var deleteId = result.posts[i].id;
@@ -220,6 +243,30 @@ function createThirdColum(i,result,newDiv){
         xhr.send();
   });
   newDivTitle.appendChild(newRemove);
+}
+
+// generate the time 
+function formatTime(seconds) {
+  var theSecond = parseInt(seconds);
+  var theMinute = 0;
+  var theHour = 0;
+  if (theSecond > 60) {
+    theMinute = parseInt(theSecond / 60);
+    theSecond = parseInt(theSecond % 60);
+
+    if (theMinute > 60) {
+      theHour = parseInt(theMinute / 60);
+      theMinute = parseInt(theMinute % 60);
+    }
+  }
+  var result = "" + parseInt(theSecond) + " seconds ";
+  if (theMinute > 0) {
+    result = "" + parseInt(theMinute) + " minutes " + result;
+  }
+  if (theHour > 0) {
+    result = "" + parseInt(theHour) + " hours " + result;
+  }
+  return result;
 }
 
 
