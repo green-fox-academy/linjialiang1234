@@ -187,14 +187,14 @@ function createModifty(i,result,newDivTitle) {
   newDivTitle.appendChild(newModifty);
 }
 
-function onModify(i,result){
+function onModify(i,result) {
   localStorage.setItem("url", result.posts[i].href);
   localStorage.setItem("title", result.posts[i].title);
   localStorage.setItem("id", result.posts[i].id);
   window.location.href= "./modify.html";
 }
 
-function createRemove(i,result,newDivTitle){
+function createRemove(i,result,newDivTitle) {
   var newRemove = document.createElement("a");
   newRemove.innerHTML = " Remove";
   newRemove.id = "showRemovev";
