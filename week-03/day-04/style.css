@@ -1,0 +1,47 @@
+#nav {
+  background-color: lightgray;
+}
+
+#addPostLink {
+  text-decoration: none;
+  color:black;
+}
+
+.singlePost {
+  margin: 30px 0px;
+}
+
+.colum{
+  display: inline-block; 
+  margin: 0px 10px;
+}
+
+#showId {
+  font-size: 30px;
+  color: lightgray;
+}
+
+#showScore {
+  font-size: 20px;
+  color: lightgray;
+}
+
+#showTitle{
+  font-size: 20px;
+  font-weight: bold;
+  color:blue;
+}
+
+#showLink {
+  text-decoration: none;
+}
+
+#showTimeStamp, #showOwner {
+  font-size: 15px;
+  color: rgba(29, 26, 26, 0.64)
+}
+
+#showModify {
+  margin-right: 20px;
+}
+
