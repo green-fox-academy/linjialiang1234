@@ -27,8 +27,8 @@ function updatePage(xhr) {
 	if (xhr.readyState == 4 && xhr.status == 200) {
 		  var dataHeader = xhr.getResponseHeader('link');
 		  var arr = dataHeader.match(/https:\/\/\w+(.\w+)+/g);
-
-		  if(arr.length === 3) {
+		 
+			if(arr.length === 3) {
 		  	previousLink = arr[1];
 		  	nextLink = arr[0];
 		  	firstLink = arr[1];
