@@ -5,6 +5,9 @@ urlValue.value = localStorage.getItem("url");
 titleValue.value = localStorage.getItem("title");
 
 var idValue = localStorage.getItem("id");
+var getIdElement = document.getElementById("idNumber");
+getIdElement.innerHTML = "#" + idValue;
+
 var submitButton = document.getElementById("submitButton");
 submitButton.addEventListener("click", function () {
   checkInputEmpty();

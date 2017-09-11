@@ -49,3 +49,7 @@
 #titleInputs {
   display: block;
 }
+
+#submitButton {
+  cursor: pointer;
+}
