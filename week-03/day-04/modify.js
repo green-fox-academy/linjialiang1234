@@ -1,3 +1,4 @@
+var url = "https://time-radish.glitch.me/"
 var urlValue = document.getElementById("urlInput");
 var titleValue = document.getElementById("titleInput");
 urlValue.value = localStorage.getItem("url");
@@ -31,13 +32,13 @@ function putData(urlValue, titleValue) {
   var jSONPostData = JSON.stringify(postData);
 
   xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4 && xhr.status == 200) {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status == 200) {
       var result = JSON.parse(xhr.responseText);
       console.log("success UPDATE data: " + result);
       window.location.href = "./reddit.html";
     }
   }
-  xhr.open("PUT", "https://time-radish.glitch.me/posts/"+idValue, true);
+  xhr.open("PUT", url + "posts/" + idValue, true);
   xhr.setRequestHeader("Accept", "application/json");
   xhr.setRequestHeader("Content-type", "application/json");  
   xhr.send(jSONPostData);

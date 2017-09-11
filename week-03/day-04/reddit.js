@@ -1,25 +1,25 @@
+var url = "https://time-radish.glitch.me/";
 window.addEventListener('load', init);
 
 function init(){
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4 && xhr.status == 200) {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       var result = JSON.parse(xhr.response);
       console.log(result.posts);
-      var getPostDiv = document.getElementsByClassName("post");
+      var getPostDiv = document.getElementsByClassName("post")[0];
   
       for (let i = 0; i < result.posts.length; i++) {
         var newDiv = document.createElement("div");
         newDiv.className = "singlePost";
-        getPostDiv[0].appendChild(newDiv);
-        var newDivInner = newDiv;
+        getPostDiv.appendChild(newDiv);
         createId(i,result,newDiv);
         createArrowAndScore(i,result,newDiv);
         createTitleDateAuthorModifyAndRemovve(i,result,newDiv);
       }
     }
   }
-  xhr.open("GET", "https://time-radish.glitch.me/posts", true);
+  xhr.open("GET", url + "posts", true);
   xhr.send();
 }
 
@@ -27,14 +27,14 @@ function createId(i,result,newDiv) {
   var newId = document.createElement("div");
   newId.innerHTML = result.posts[i].id;
   newId.id = "showId";
-  newId.className = "colum";
+  newId.className = "column";
   newDiv.appendChild(newId);
 }
 
 function createArrowAndScore(i,result,newDiv){
   var newDivScore = document.createElement("div");
-  newDivScore.id = "secondColum";
-  newDivScore.className = "colum";
+  newDivScore.id = "secondColumn";
+  newDivScore.className = "column";
   newDiv.appendChild(newDivScore);
 
   createUpArrow(i,result,newDivScore);
@@ -76,13 +76,13 @@ function onUpVote(i,result,newUpArrow){
   var xhr = new XMLHttpRequest();
 
   xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4 && xhr.status == 200) {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       var result = JSON.parse(xhr.responseText);
       console.log("success put add data: " + result);      
       location.reload();
     }
   }
-  xhr.open("PUT", "https://time-radish.glitch.me/posts/"+getId+"/upvote", true);
+  xhr.open("PUT", url + "posts/" + getId + "/upvote", true);
   xhr.setRequestHeader("Accept", "application/json");
   xhr.send();
 }
@@ -98,21 +98,21 @@ function onDownVote(i,result,newDownArrow){
 
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4 && xhr.status == 200) {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       var result = JSON.parse(xhr.responseText);
       console.log("success put down data: " + result);
       location.reload();
     }
   }
-  xhr.open("PUT", "https://time-radish.glitch.me/posts/"+getId+"/downvote", true);
+  xhr.open("PUT", url + "posts/" + getId + "/downvote", true);
   xhr.setRequestHeader("Accept", "application/json");
   xhr.send();
 }
 
 function createTitleDateAuthorModifyAndRemovve(i,result,newDiv){
   var newDivTitle = document.createElement("div");
-  newDivTitle.id = "thirdColum";
-  newDivTitle.className = "colum";
+  newDivTitle.id = "thirdColumn";
+  newDivTitle.className = "column";
   newDiv.appendChild(newDivTitle);
 
   var newTitle = document.createElement("div");
@@ -168,6 +168,8 @@ function formatTime(seconds) {
   return result;
 }
 
+
+
 function createOwner(i,result,newDivTitle) {
   var newOwner = document.createElement("span");
   if (result.posts[i].owner === null) {
@@ -197,7 +199,7 @@ function onModify(i,result) {
 function createRemove(i,result,newDivTitle) {
   var newRemove = document.createElement("a");
   newRemove.innerHTML = " Remove";
-  newRemove.id = "showRemovev";
+  newRemove.id = "showRemove";
   var deleteId = result.posts[i].id;
   newRemove.addEventListener("click", function(){onRemove(i,result);});
   newDivTitle.appendChild(newRemove);
@@ -208,13 +210,13 @@ function onRemove(i,result) {
   var xhr = new XMLHttpRequest();
         
   xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4 && xhr.status == 200) {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       var result = JSON.parse(xhr.responseText);
       console.log("success removed data: " + result);
       location.reload();
     }
   }
-  xhr.open("DELETE", "https://time-radish.glitch.me/posts/"+deleteId, true);
+  xhr.open("DELETE", url + "posts/" + deleteId, true);
   xhr.setRequestHeader("Content-type", "application/json");
   xhr.send();
 }

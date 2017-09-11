@@ -1,3 +1,4 @@
+var url = "https://time-radish.glitch.me/";
 var submitButton = document.getElementById("submitButton");
 submitButton.addEventListener("click", function () {
   checkInputEmpty();
@@ -31,7 +32,7 @@ function postData(urlValue, titleValue) {
       window.history.back();
     }
   }
-  xhr.open("POST", "https://time-radish.glitch.me/posts", true);
+  xhr.open("POST", url + "posts", true);
   xhr.setRequestHeader("Accept", "application/json");
   xhr.setRequestHeader("Content-type", "application/json");
   xhr.send(jSONPostData);
