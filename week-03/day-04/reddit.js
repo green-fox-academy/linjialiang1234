@@ -37,17 +37,27 @@ function createArrowAndScore(i,result,newDiv){
   newDivScore.className = "colum";
   newDiv.appendChild(newDivScore);
 
-  var newUpArrow = document.createElement("img");
-  newUpArrow.src = "./images/upvote.png";
-  newUpArrow.addEventListener("click", function(){onUpVote(i,result,newUpArrow);});
-  newDivScore.appendChild(newUpArrow);
+  createUpArrow(i,result,newDivScore);
 
   var newScore = document.createElement("div");
   newScore.innerHTML = result.posts[i].score;
   newScore.id = "showScore";
   newDivScore.appendChild(newScore);
 
+  createDownArrow(i,result,newDivScore);
+}
+
+function createUpArrow(i,result,newDivScore){
+  var newUpArrow = document.createElement("img");
+  newUpArrow.id = "upArrow";
+  newUpArrow.src = "./images/upvote.png";
+  newUpArrow.addEventListener("click", function(){onUpVote(i,result,newUpArrow);});
+  newDivScore.appendChild(newUpArrow);
+}
+
+function createDownArrow(i,result,newDivScore){
   var newDownArrow = document.createElement("img");
+  newDownArrow.id = "downArrow";
   newDownArrow.src = "./images/downvote.png";
   newDownArrow.addEventListener("click", function(){onDownVote(i,result,newDownArrow);});
   newDivScore.appendChild(newDownArrow);
@@ -56,13 +66,11 @@ function createArrowAndScore(i,result,newDiv){
 function onUpVote(i,result,newUpArrow){
   if(newUpArrow.src == "file:///C:/Users/Leo_Lam/Desktop/Leo_Lam-EPAM-JS/week-03/day-04/images/upvote.png"){
     newUpArrow.src = "./images/upvoted.png";
-    newDownArrow.src = "./images/downvote.png";
+    var downArrowImage = document.getElementById("downArrow");
+    downArrowImage.src = "./images/downvote.png";
   }
-  console.log("up id  " + result.posts[i].id);
-  console.log("up score" + result.posts[i].score);
   var getId = result.posts[i].id;
   var getScore = result.posts[i].score;
-  console.log("getscore +1 : " + getScore);
   var xhr = new XMLHttpRequest();
 
   xhr.onreadystatechange = function () {
@@ -80,11 +88,12 @@ function onUpVote(i,result,newUpArrow){
 function onDownVote(i,result,newDownArrow){
   if(newDownArrow.src == "file:///C:/Users/Leo_Lam/Desktop/Leo_Lam-EPAM-JS/week-03/day-04/images/downvote.png"){
     newDownArrow.src = "./images/downvoted.png";
-    newUpArrow.src = "./images/upvote.png";
+    var upArrowImage = document.getElementById("upArrow");
+    upArrowImage.src = "./images/upvote.png";
   }
   var getId = result.posts[i].id;
   var getScore = result.posts[i].score;
-  console.log("getscore -1 : " + getScore);
+
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
