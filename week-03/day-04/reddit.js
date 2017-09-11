@@ -38,12 +38,7 @@ function createArrowAndScore(i,result,newDiv){
   newDiv.appendChild(newDivScore);
 
   createUpArrow(i,result,newDivScore);
-
-  var newScore = document.createElement("div");
-  newScore.innerHTML = result.posts[i].score;
-  newScore.id = "showScore";
-  newDivScore.appendChild(newScore);
-
+  createScore(i,result,newDivScore);
   createDownArrow(i,result,newDivScore);
 }
 
@@ -53,6 +48,13 @@ function createUpArrow(i,result,newDivScore){
   newUpArrow.src = "./images/upvote.png";
   newUpArrow.addEventListener("click", function(){onUpVote(i,result,newUpArrow);});
   newDivScore.appendChild(newUpArrow);
+}
+
+function createScore(i,result,newDivScore) {
+  var newScore = document.createElement("div");
+  newScore.innerHTML = result.posts[i].score;
+  newScore.id = "showScore";
+  newDivScore.appendChild(newScore);
 }
 
 function createDownArrow(i,result,newDivScore){
@@ -117,65 +119,31 @@ function createTitleDateAuthorModifyAndRemovve(i,result,newDiv){
   newTitle.id = "showTitle";
   newDivTitle.appendChild(newTitle);
 
+  createTitleLink(i,result,newTitle);
+  createTimeStamp(i,result,newDivTitle);
+  createOwner(i,result,newDivTitle);
+ 
+  var newBr = document.createElement("br");
+  newDivTitle.appendChild(newBr);
+
+  createModifty(i,result,newDivTitle);
+  createRemove(i,result,newDivTitle);
+}
+
+function createTitleLink(i,result,newTitle) {
   var newTitleLink = document.createElement("a");
   newTitleLink.id = "showLink";
   newTitleLink.href = result.posts[i].href;
   newTitleLink.innerHTML =  result.posts[i].title;
   newTitle.appendChild(newTitleLink);
-  
+}
+
+function createTimeStamp(i,result,newDivTitle) {
   var newTimeStamp = document.createElement("span");
   var timeResult = formatTime(result.posts[i].timestamp )
   newTimeStamp.innerHTML = "submitted " + timeResult;
   newTimeStamp.id = "showTimeStamp";
   newDivTitle.appendChild(newTimeStamp);
-
-  var newOwner = document.createElement("span");
-  if (result.posts[i].owner === null) {
-    result.posts[i].owner = " by anonymous";
-  }
-  newOwner.innerHTML = result.posts[i].owner;
-  newOwner.id = "showOwner";
-  newDivTitle.appendChild(newOwner);
-
-  var newBr = document.createElement("br");
-  newDivTitle.appendChild(newBr);
-
-  var newModifty = document.createElement("a");
-  newModifty.innerHTML = "Modify   ";
-  newModifty.id = "showModify";
-
-  newModifty.addEventListener("click", function(){ onModify(i,result);});
-  newDivTitle.appendChild(newModifty);
-
-  var newRemove = document.createElement("a");
-  newRemove.innerHTML = "   Remove";
-  newRemove.id = "showRemovev";
-  var deleteId = result.posts[i].id;
-  newRemove.addEventListener("click", function(){onRemove(i,result);});
-  newDivTitle.appendChild(newRemove);
-}
-
-function onModify(i,result){
-  localStorage.setItem("url", result.posts[i].href);
-  localStorage.setItem("title", result.posts[i].title);
-  localStorage.setItem("id", result.posts[i].id);
-  window.location.href= "./modify.html";
-}
-
-function onRemove(i,result) {
-  var deleteId = result.posts[i].id
-  var xhr = new XMLHttpRequest();
-        
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      var result = JSON.parse(xhr.responseText);
-      console.log("success removed data: " + result);
-      location.reload();
-    }
-  }
-  xhr.open("DELETE", "https://time-radish.glitch.me/posts/"+deleteId, true);
-  xhr.setRequestHeader("Content-type", "application/json");
-  xhr.send();
 }
 
 function formatTime(seconds) {
@@ -199,5 +167,57 @@ function formatTime(seconds) {
   }
   return result;
 }
+
+function createOwner(i,result,newDivTitle) {
+  var newOwner = document.createElement("span");
+  if (result.posts[i].owner === null) {
+    result.posts[i].owner = " by anonymous";
+  }
+  newOwner.innerHTML = result.posts[i].owner;
+  newOwner.id = "showOwner";
+  newDivTitle.appendChild(newOwner);
+}
+
+function createModifty(i,result,newDivTitle) {
+  var newModifty = document.createElement("a");
+  newModifty.innerHTML = "Modify   ";
+  newModifty.id = "showModify";
+
+  newModifty.addEventListener("click", function(){ onModify(i,result);});
+  newDivTitle.appendChild(newModifty);
+}
+
+function onModify(i,result){
+  localStorage.setItem("url", result.posts[i].href);
+  localStorage.setItem("title", result.posts[i].title);
+  localStorage.setItem("id", result.posts[i].id);
+  window.location.href= "./modify.html";
+}
+
+function createRemove(i,result,newDivTitle){
+  var newRemove = document.createElement("a");
+  newRemove.innerHTML = " Remove";
+  newRemove.id = "showRemovev";
+  var deleteId = result.posts[i].id;
+  newRemove.addEventListener("click", function(){onRemove(i,result);});
+  newDivTitle.appendChild(newRemove);
+}
+
+function onRemove(i,result) {
+  var deleteId = result.posts[i].id
+  var xhr = new XMLHttpRequest();
+        
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      var result = JSON.parse(xhr.responseText);
+      console.log("success removed data: " + result);
+      location.reload();
+    }
+  }
+  xhr.open("DELETE", "https://time-radish.glitch.me/posts/"+deleteId, true);
+  xhr.setRequestHeader("Content-type", "application/json");
+  xhr.send();
+}
+
 
 
