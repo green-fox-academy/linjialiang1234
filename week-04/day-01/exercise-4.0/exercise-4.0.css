@@ -1,0 +1,36 @@
+
+body{
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding-top: 20px; 
+}
+.container {
+  width: 1000px;
+}
+header {
+  background: purple;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 80px;
+}
+.nav {
+  background: blue;
+  width: 100px;
+  height: 40px;
+  margin: 10px;
+}
+.content {
+  display: flex;
+}
+.main {
+  background: yellow;
+  width: 70%;
+  height: 500px;
+}
+.sidebar {
+  background: green;
+  width: 30%;
+  height: 500px;
+}

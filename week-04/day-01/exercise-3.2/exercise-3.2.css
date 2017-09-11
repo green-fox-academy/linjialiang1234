@@ -1,0 +1,15 @@
+.container {
+  height: 600px;
+  background-color: yellow;
+  display: flex;
+  align-items: center;
+  padding: 0px;
+  justify-content: space-between;
+}
+
+.item {
+  width: 200px;
+  height: 200px;
+  background-color: purple;
+  list-style-type: none;
+}

@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  width: 500px;
+}
+
+.green {
+  background: green;
+  height: 25%;
+}
+.yellow {
+  background: yellow;
+  height: 25%;
+}
+
+.purple {
+  background: purple;
+  height: 50%;
+}
