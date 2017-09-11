@@ -1,51 +1,43 @@
-// 6c4feeab3b57475485c86a03a7222cfd
-// httpRequest = new XMLHttpRequest();
+// API key: 6c4feeab3b57475485c86a03a7222cfd
+var xhttp = new XMLHttpRequest();
+var mainImage = document.querySelector(".mainImage");
 
-   var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      var result = JSON.parse(xhttp.responseText);
-       console.log(result);
+xhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var result = JSON.parse(xhttp.responseText);
+    var thumbnailImageContainer = document.getElementsByClassName("thumbnailImage");
 
-      for(let i = 0; i < result.data.length; i++) {
-          console.log(result.data[i].images.original.url);
-          var stillNewImage = document.createElement("img")
-          stillNewImage.src = result.data[i].images.downsized_still.url;
-          stillNewImage.id = "img" + i;
-          stillNewImage.className = "img";
+    for (let i = 0; i < result.data.length; i++) {
+      console.log(result.data[i].images.original.url);
+      var thumbnailImage = document.createElement("img")
+      thumbnailImage.src = result.data[i].images.downsized_still.url;
+      thumbnailImage.setAttribute("data-originalImage", result.data[i].images.original.url);
+      thumbnailImage.setAttribute("data-downsizedImage", result.data[i].images.downsized_still.url);
 
-          stillNewImage.addEventListener("click", function(event){
+      thumbnailImage.addEventListener("click", changeImage);
+      thumbnailImage.addEventListener("mouseover", mouseOver);
+      thumbnailImage.addEventListener("mouseout", mouseOut);
 
-            var animatedNewImage = document.createElement("img");
-            // console.log("1111111+ " + i);
-            animatedNewImage.src = result.data[i].images.original.url;
-            var mainTag = document.querySelector("main");
-      
-            document.querySelector("main")[0].replaceChild(animatedNewImage);
-          });
+      thumbnailImageContainer[0].appendChild(thumbnailImage);
+    };
+  }
+}
 
+xhttp.open("GET", "http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=6c4feeab3b57475485c86a03a7222cfd&limit=16", true);
+xhttp.send();
 
-        //  stillNewImage.addEventListener("mouseover", function(event) {
-        //     event.target.src = result.data[i].images.original.url;      	
-        //   });
-        //   // div.appendChild(img);
-    
-        //   stillNewImage.addEventListener("mouseout", function(event) {
-        //     event.target.src = result.data[i].images.downsized_still.url;      	
-        //   }); 
-    
+function changeImage(event) {
+  if (mainImage.src === event.target.src) {
+    mainImage.src = event.target.getAttribute("data-downsizedImage");
+  } else {
+    mainImage.src = event.target.getAttribute("data-originalImage");
+  }
+}
 
-          var divTag = document.querySelector("div");
-          console.log(divTag);
-          divTag.appendChild(stillNewImage);
+function mouseOver(event) {
+  event.target.src = event.target.getAttribute("data-originalImage");
+}
 
-          
-          
-      }
-
-    
-
-    }
-  };
-  xhttp.open("GET", "http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=6c4feeab3b57475485c86a03a7222cfd&limit=16", true);
-  xhttp.send();
+function mouseOut(event) {
+  event.target.src = event.target.getAttribute("data-downsizedImage");
+}
