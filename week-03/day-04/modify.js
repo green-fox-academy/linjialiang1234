@@ -2,10 +2,11 @@ var urlValue = document.getElementById("urlInput");
 var titleValue = document.getElementById("titleInput");
 // var getInputUrl = "";
 // var getInputTitle= "";
+
 urlValue.value = localStorage.getItem("url");
 titleValue.value = localStorage.getItem("title");
-console.log("111+ " + urlValue.value);
 
+console.log("111+ " + urlValue.value);
 console.log("22221+ " + titleValue.value);
 
 var idValue = localStorage.getItem("id");
@@ -37,18 +38,11 @@ function checkInputEmpty() {
 
 function postData(urlValue, titleValue) {
   var xhr = new XMLHttpRequest();
-
-
-  console.log("111+ " + urlValue.value);
-  
-  console.log("22221+ " + titleValue.value);
   var postData = {
       "title": titleValue.value,
       "href": urlValue.value
     };
-
   var jSONPostData = JSON.stringify(postData);
-  console.log("Original post data:   " + jSONPostData);
 
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
@@ -59,8 +53,6 @@ function postData(urlValue, titleValue) {
   }
   xhr.open("PUT", "https://time-radish.glitch.me/posts/"+idValue, true);
   xhr.setRequestHeader("Accept", "application/json");
-  xhr.setRequestHeader("Content-type", "application/json");
-  // xhr.setRequestHeader("Origin", "nothing");
-  
+  xhr.setRequestHeader("Content-type", "application/json");  
   xhr.send(jSONPostData);
 }

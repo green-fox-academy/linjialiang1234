@@ -30,7 +30,6 @@ function Rocket(type, fuelLevel, numberOFLaunches) {
     this.numberOFLaunches = numberOFLaunches;
   }
 
-
   this.launch = function () {
     if (this.type === "falcon1" && this.fuelLevel >= 1) {
       this.fuelLevel -= 1;
@@ -40,7 +39,6 @@ function Rocket(type, fuelLevel, numberOFLaunches) {
       this.fuelLevel -= 9;
       this.numberOFLaunches += 1;
     }
-
   }
 
   this.refill = function () {
@@ -53,7 +51,6 @@ function Rocket(type, fuelLevel, numberOFLaunches) {
       usedFuel = 20 - this.fuelLevel;
       this.fuelLevel = 20;
     }
-
     return usedFuel;
   }
 
@@ -86,7 +83,6 @@ function SpaceX(storedFuel) {
   this.addRocket = function(rocket) {
       rockets.push(rocket);
       this.launcheNumber += rocket.numberOFLaunches;
-
   };
   this.refillAll = function() {
     let that = this;
@@ -95,11 +91,11 @@ function SpaceX(storedFuel) {
     });
   };
   this.launchAll = function() {
-    // let that = this;
+    let that = this;
     rockets.forEach(function(ele) {
       ele.launch();
-      this.launcheNumber += 1;
-    },this)
+      that.launcheNumber += 1;
+    });
   };
   this.buyFuel = function(amount) {
     this.storedFuel += amount;
