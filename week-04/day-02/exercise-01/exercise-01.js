@@ -116,18 +116,23 @@ app.post('/sith', jsonParser, function (req, res) {
 
   console.log("33 +" + arr.length);
   var result = [];
+  var temporaryNumber = [];
   console.log("arr:" + arr);
   for (var i = 0; i < arr.length; i++) {
     var anotherArr = arr[i].split(" ");
-    console.log(" 111 " + arr[i]);
-    // for(var j = 0; j < anotherArr.length; i=i+2) {
+    console.log(" 111another " + anotherArr + "  length" + anotherArr.length);
+      for(var j = 0; j < anotherArr.length-1; i=i+2) {
 
-    //    var temporyNumber = anotherArr[i];
-    //     anotherArr[i] = anotherArr[i+1];
-    //    anotherArr[i+1] = temporyNumber;
-    //    }
-    //    result.push(anotherArr.join(" ")); 
+    //   console.log("222: " + anotherArr[i]);
+         temporyNumber = anotherArr[i];
+         anotherArr[i] = anotherArr[i+1];
+        anotherArr[i+1] = temporyNumber;
+    //  }
   }
+          result.push(anotherArr);
+}
+console.log("result +++ " + result); 
+
   // console.log("222::::" + result);
   // res.send({
   //   "sith_text" : result
