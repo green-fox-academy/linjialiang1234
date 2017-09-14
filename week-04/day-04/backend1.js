@@ -208,29 +208,28 @@ app.post('/posts',jsonParser,function(req, res) {
 
 });
 
-app.put('/posts/:id/upvote',jsonParser,function(req, res) {
+app.put('/posts/:id/upvote/:score',jsonParser,function(req, res) {
   var obj = { posts: [] };
-  
+  var upvoteId = req.params.id;
+  var upvoteScore = req.params.score;
+  // upvoteScore += 1;
+  console.log("123: " + req.params.id)
+  console.log("234: " + req.params.score);  
   MongoClient.connect(url, function (err, db) {
     var collection = db.collection('students');
     if (err) {
       console.log('Unable to connect to the MongoDB server. Error:', err);
     }
 
-    var postId = req.body.id;
-    var postUrl = req.body.href;
-    var postTitle = req.body.title;
-    var postScore = req.body.score;
-
-
     var newObj = {
-      "id": postId,
-      "href": postUrl,
-      "title":postTitle,
-      "score": postScore
-
-
+      "id": upvoteId,
+      // "title":postTitle,
+      // "href": postUrl,      
+      "score": upvoteScore
     };
+
+    var idValue = parseInt(newObj.id);
+    var scoreValue = parseInt(newObj.score)+1;
     // collection.insertMany(getPost, function(err, res) {
     //   if (err) throw err;
     //   console.log("1 document inserted");
@@ -251,30 +250,30 @@ app.put('/posts/:id/upvote',jsonParser,function(req, res) {
     //   // db.close();
     // });
 
-    var myquery = { id: postId };
+    var myquery = { id: newObj.id };
     var newvalues = { $set: {score: newObj.score}};
-    collection.updateOne(myquery, newvalues, function(err, res) {
+    // console.log("uuuuuu: " + newObj.score);
+    collection.updateMany({ id: idValue}, {$set:{score:scoreValue}}, function(err, res) {
       if (err) throw err;
-      console.log("score document updated");
+      console.log("1111 score document updated");
       // db.close();
-    });
+    }
+  );
 
     collection.find({}).toArray(function(err, docs) {
-      console.dir(docs);
+      // console.dir(docs);
       obj.posts = docs;
-      res.send(JSON.stringify(obj));
+        res.send(obj);
     });
-
-    // collection.remove({},function(err,removed) {
-    //     console.log(removed);
-    // })
+    // res.send(obj);
+    
     db.close();
   });
 
 
 });
 
-app.put('/posts/:id/downvote',jsonParser,function(req, res) {
+app.put('/posts/:id/downvote/:score',jsonParser,function(req, res) {
   var obj = { posts: [] };
   
   MongoClient.connect(url, function (err, db) {

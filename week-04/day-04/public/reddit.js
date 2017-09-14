@@ -76,6 +76,12 @@ function onUpVote(i,result,newUpArrow){
   var getScore = result.posts[i].score;
   var xhr = new XMLHttpRequest();
 
+  var putData = {
+    "id": getId,
+    "score":getScore 
+  };
+  // var jSONPutData = JSON.stringify(putData);
+  
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       var result = JSON.parse(xhr.responseText);
@@ -83,7 +89,8 @@ function onUpVote(i,result,newUpArrow){
       location.reload();
     }
   }
-  xhr.open("PUT", url + "posts/" + getId + "/upvote", true);
+  console.log("getIdis " + putData.id + " " + putData.score);
+  xhr.open("PUT", url + "posts/" + getId + "/upvote/" + getScore, true);
   xhr.setRequestHeader("Accept", "application/json");
   xhr.send();
 }
@@ -101,8 +108,10 @@ function onDownVote(i,result,newDownArrow){
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       var result = JSON.parse(xhr.responseText);
-      console.log("success put down data: " + result);
-      location.reload();
+      console.log("success put down data: " + result.posts[2].score);
+      // location.reload();
+      window.location.href = "./reddit.html";
+      
     }
   }
   xhr.open("PUT", url + "posts/" + getId + "/downvote", true);
