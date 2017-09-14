@@ -1,4 +1,4 @@
-var url = "https://time-radish.glitch.me/";
+var url = "http://localhost:8080/";
 var submitButton = document.getElementById("submitButton");
 submitButton.addEventListener("click", function () {
   checkInputEmpty();

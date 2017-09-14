@@ -1,3 +1,4 @@
+
 'use strict';
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -39,19 +40,60 @@ var getPost= [
     "vote": -1
   }
 ]
-MongoClient.connect(url, function (err, db) {
-  var collection = db.collection('students');
-  if (err) {
-    console.log('Unable to connect to the MongoDB server. Error:', err);
-  }
-  console.log('Connection established to ' + url);
-  // collection.insertMany(initialInfo, function(err, result) {
-  //   console.log("Inserted students into the document collection");
-  // });
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  console.log("Database created!");
+  // db.createCollection("students", function(err, res){
+  //      if (err) throw err;
+  //   console.log("Collection created!");
+  //   //   //   db.close();
 
- 
+  // });
+  var collection = db.collection('students');
+  //   // if (err) {
+  //   //   console.log('Unable to connect to the MongoDB server. Error:', err);
+  //   // }
+  //   // console.log('Connection established to ' + url);
+  // collection.insertMany(getPost, function(err, result) {
+  //    console.log("Inserted students into the document collection");
+  //  });
+
+  collection.find({}).toArray(function(err, docs) {
+       console.dir(docs);
+      //  obj.posts = docs;
+      //  res.send(JSON.stringify(obj));
+     });
   db.close();
 });
+// MongoClient.connect(url, function (err, db) {
+//   if (err) {
+//     console.log('Unable to connect to the MongoDB server. Error:', err);
+//   }
+//   console.log('Connection established to ' + url);
+//   // db.createCollection("students", function(err, res){
+//   //   if (err) throw err;
+//   //   console.log("Collection created!");
+//   //   db.close();
+    
+// });
+// MongoClient.connect(url, function (err, db) {
+//   db.createCollection("students", function(err, res) {
+//     if (err) throw err;
+//     console.log("Collection created!");
+//     // db.close();
+//   });
+//   // var collection = db.collection('students');
+//   // if (err) {
+//   //   console.log('Unable to connect to the MongoDB server. Error:', err);
+//   // }
+//   // console.log('Connection established to ' + url);
+//   // collection.insertMany(initialInfo, function(err, result) {
+//   //   console.log("Inserted students into the document collection");
+//   // });
+
+ 
+//   db.close();
+// });
 
 
 
