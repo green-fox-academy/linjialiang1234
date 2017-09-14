@@ -146,14 +146,14 @@ app.get('/posts',function(req,res){
 
 
    collection.find({}).toArray(function(err, docs) {
-      console.dir(docs);
+      // console.dir(docs);
       obj.posts = docs;
       res.send(obj);
     });
      db.close();
 
   })
-      console.log("123" + obj)
+      // console.log("123" + obj)
      // res.send(obj);
   
 
@@ -194,7 +194,7 @@ app.post('/posts',jsonParser,function(req, res) {
     });
 
     collection.find({}).toArray(function(err, docs) {
-      console.dir(docs);
+      // console.dir(docs);
       obj.posts = docs;
       res.send(JSON.stringify(obj));
     });
@@ -289,6 +289,33 @@ app.put('/posts/:id/downvote/:score',jsonParser,function(req, res) {
 
 
 });
+
+app.delete('/posts/:id',function(req,res) {
+  var obj = { posts: [] };
+  var deletedId = parseInt(req.params.id);
+  console.log("deleted Id " + deletedId);
+  MongoClient.connect(url, function(err, db) {
+    var collection = db.collection('students');
+    if (err) {
+      console.log('Unable to connect to the MongoDB server. Error:', err);
+    }    
+    
+    collection.remove({id:deletedId}, function(err,result) {
+      console.log(result);
+    });
+  
+    collection.find({}).toArray(function(err, docs) {
+      // console.dir(docs);
+      obj.posts = docs;
+      res.setHeader("Content-Type", "application/json");
+      res.send(JSON.stringify(obj));
+        // res.send(obj);
+    });
+    db.close();
+    
+  });
+
+})
 
 // app.put('/posts/:id/downvote/:score',jsonParser,function(req, res) {
 //   var obj = { posts: [] };
