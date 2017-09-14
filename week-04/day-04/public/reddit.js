@@ -114,7 +114,7 @@ function onDownVote(i,result,newDownArrow){
       
     }
   }
-  xhr.open("PUT", url + "posts/" + getId + "/downvote", true);
+  xhr.open("PUT", url + "posts/" + getId + "/downvote/" + getScore, true);
   xhr.setRequestHeader("Accept", "application/json");
   xhr.send();
 }
