@@ -1,0 +1,61 @@
+#container {
+  width: 500px;
+}
+
+#nav {
+  background-color: lightgray;
+}
+
+#heading {
+  border-bottom: 5px solid lightblue;
+  font-size: 25px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+#idNumber {
+  color: blue;
+}
+
+#discription {
+  background-color: darkgoldenrod;
+  border: 1px solid red;
+}
+
+#urlDiv,
+#titleDiv {
+  background-color: lightblue;
+  margin: 10px 0px;
+  padding: 10px 5px;
+}
+
+#optionsDiv {
+  background-color: lightblue;
+  margin: 10px 0px;
+}
+
+#optionsDiv p,
+#optionsDiv input,
+#optionsDiv span {
+  padding: 5px 0px 0px 0px;
+}
+
+#checkBox1, #postAnonymous {
+  margin-bottom: 10px;
+}
+
+#options {
+  margin-left: 5px;
+}
+
+#urlDiv label,
+#urlInput,
+#titleDiv label,
+#titleInputs {
+  display: block;
+}
+
+#submitButton:hover {
+  cursor: pointer;
+}
+

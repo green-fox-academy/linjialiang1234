@@ -1,8 +1,11 @@
 'use strict';
 var express = require('express');
 var bodyParser = require('body-parser');
+var jsonParser = bodyParser.json();
 var app = express();
+// app.set('view engine', 'html');
 
+app.use('/', express.static('public'));
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 var url = 'mongodb://localhost:27017/reddit';
@@ -57,7 +60,66 @@ app.get('/hello', function(req, res){
 })
 app.listen(8080);
 //lists all the posts
+app.get('/',function(req,res){
+  var obj = { posts: [] };
+  
+  // MongoClient.connect(url, function (err, db) {
+  //   var collection = db.collection('students');
+  //   if (err) {
+  //     console.log('Unable to connect to the MongoDB server. Error:', err);
+  //   }
+
+    // collection.insertMany(getPost, function(err, res) {
+    //   if (err) throw err;
+    //   console.log("1 document inserted");
+    //   // db.close();
+   
+    // });
+
+    // collection.find({}).toArray(function(err, docs) {
+    //   console.dir(docs);
+    //   obj.posts = docs;
+    //   res.send(JSON.stringify(obj));
+    // });
+
+    // collection.remove({},function(err,removed) {
+    //     console.log(removed);
+    // })
+
+
+  //   db.close();
+  // });
+
+  res.sendFile(__dirname + "/public/reddit.html");
+})
+
 app.get('/posts',function(req,res){
+  var obj = { posts: [] };
+
+  MongoClient.connect(url, function (err, db) {
+      var collection = db.collection('students');
+      if (err) {
+        console.log('Unable to connect to the MongoDB server. Error:', err);
+      }
+
+
+   collection.find({}).toArray(function(err, docs) {
+      console.dir(docs);
+      obj.posts = docs;
+      res.send(obj);
+    });
+     db.close();
+
+  })
+      console.log("123" + obj)
+     // res.send(obj);
+  
+
+
+});
+
+
+app.post('/posts',jsonParser,function(req, res) {
   var obj = { posts: [] };
   
   MongoClient.connect(url, function (err, db) {
@@ -66,12 +128,28 @@ app.get('/posts',function(req,res){
       console.log('Unable to connect to the MongoDB server. Error:', err);
     }
 
+    var postId = req.body.id;
+    var postUrl = req.body.href;
+    var postTitle = req.body.title;
+
+
+    var newObj = {
+      "id": postId,
+      "href": postUrl,
+      "title":postTitle,
+
+
+    };
     // collection.insertMany(getPost, function(err, res) {
     //   if (err) throw err;
     //   console.log("1 document inserted");
     //   // db.close();
    
     // });
+    collection.insertOne(newObj,function(err,res) {
+        if(err) throw err;
+        console.log(newObj + " has inserted")
+    });
 
     collection.find({}).toArray(function(err, docs) {
       console.dir(docs);
@@ -82,8 +160,140 @@ app.get('/posts',function(req,res){
     // collection.remove({},function(err,removed) {
     //     console.log(removed);
     // })
-
-
     db.close();
   });
-})
+
+
+});
+
+app.put('/posts/:id/upvote',jsonParser,function(req, res) {
+  var obj = { posts: [] };
+  
+  MongoClient.connect(url, function (err, db) {
+    var collection = db.collection('students');
+    if (err) {
+      console.log('Unable to connect to the MongoDB server. Error:', err);
+    }
+
+    var postId = req.body.id;
+    var postUrl = req.body.href;
+    var postTitle = req.body.title;
+    var postScore = req.body.score;
+
+
+    var newObj = {
+      "id": postId,
+      "href": postUrl,
+      "title":postTitle,
+      "score": postScore
+
+
+    };
+    // collection.insertMany(getPost, function(err, res) {
+    //   if (err) throw err;
+    //   console.log("1 document inserted");
+    //   // db.close();
+   
+    // });
+    // collection.insertOne(newObj,function(err,res) {
+    //     if(err) throw err;
+    //     console.log(newObj + " has inserted")
+    // });
+
+    // query = { id : postId };
+    // var currentScore = 0;
+    // db.collection("customers").find(query).toArray(function(err, result) {
+    //   if (err) throw err;
+    //   currentScore = result.score;
+    //   console.log(currentScore);
+    //   // db.close();
+    // });
+
+    var myquery = { id: postId };
+    var newvalues = { $set: {score: newObj.score}};
+    collection.updateOne(myquery, newvalues, function(err, res) {
+      if (err) throw err;
+      console.log("score document updated");
+      // db.close();
+    });
+
+    collection.find({}).toArray(function(err, docs) {
+      console.dir(docs);
+      obj.posts = docs;
+      res.send(JSON.stringify(obj));
+    });
+
+    // collection.remove({},function(err,removed) {
+    //     console.log(removed);
+    // })
+    db.close();
+  });
+
+
+});
+
+app.put('/posts/:id/downvote',jsonParser,function(req, res) {
+  var obj = { posts: [] };
+  
+  MongoClient.connect(url, function (err, db) {
+    var collection = db.collection('students');
+    if (err) {
+      console.log('Unable to connect to the MongoDB server. Error:', err);
+    }
+
+    var postId = req.body.id;
+    var postUrl = req.body.href;
+    var postTitle = req.body.title;
+    var postScore = req.body.score;
+
+
+    var newObj = {
+      "id": postId,
+      "href": postUrl,
+      "title":postTitle,
+      "score": postScore
+
+
+    };
+    // collection.insertMany(getPost, function(err, res) {
+    //   if (err) throw err;
+    //   console.log("1 document inserted");
+    //   // db.close();
+   
+    // });
+    // collection.insertOne(newObj,function(err,res) {
+    //     if(err) throw err;
+    //     console.log(newObj + " has inserted")
+    // });
+
+    // query = { id : postId };
+    // var currentScore = 0;
+    // db.collection("customers").find(query).toArray(function(err, result) {
+    //   if (err) throw err;
+    //   currentScore = result.score;
+    //   console.log(currentScore);
+    //   // db.close();
+    // });
+
+    var myquery = { id: postId };
+    var newvalues = { $set: {score: newObj.score}};
+    collection.updateOne(myquery, newvalues, function(err, res) {
+      if (err) throw err;
+      console.log("score document updated");
+      // db.close();
+    });
+
+    collection.find({}).toArray(function(err, docs) {
+      console.dir(docs);
+      obj.posts = docs;
+      res.send(JSON.stringify(obj));
+    });
+
+    // collection.remove({},function(err,removed) {
+    //     console.log(removed);
+    // })
+    db.close();
+  });
+
+
+});

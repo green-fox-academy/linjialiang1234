@@ -91,6 +91,7 @@ MongoClient.connect(url, function(err, db) {
 
   db.collection("students").update({name: "Leo Lam"}, {$set:{age:18}});
 
+  
   db.collection("students").find({}).toArray(function(err, result) {
     if (err) throw err;
     console.log(result);
