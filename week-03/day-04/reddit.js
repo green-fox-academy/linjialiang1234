@@ -1,4 +1,5 @@
-var url = "https://time-radish.glitch.me/";
+// var url = "https://time-radish.glitch.me/";
+var url = "localhost:3000/";
 window.addEventListener('load', init);
 
 function init(){
