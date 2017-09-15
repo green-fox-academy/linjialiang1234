@@ -170,34 +170,44 @@ app.post('/posts',jsonParser,function(req, res) {
       console.log('Unable to connect to the MongoDB server. Error:', err);
     }
 
-    var postId = req.body.id;
-    var postUrl = req.body.href;
-    var postTitle = req.body.title;
-
-
     var newObj = {
-      "id": postId,
-      "href": postUrl,
-      "title":postTitle,
+      'title':req.body.title,
+      'href':req.body.href,
+      'id': 111,
+      'timestamp':new Date().getTime(),
+      'score':0
+    }
+    // var postId = req.body.id;
+    // var postUrl = req.body.href;
+    // var postTitle = req.body.title;
 
 
-    };
+    // var newObj = {
+    //   "id": postId,
+    //   "href": postUrl,
+    //   "title":postTitle,
+
+
+    // };
     // collection.insertMany(getPost, function(err, res) {
     //   if (err) throw err;
     //   console.log("1 document inserted");
     //   // db.close();
    
     // });
-    collection.insertOne(newObj,function(err,res) {
+    collection.insertOne(newObj,function(err,docs) {
         if(err) throw err;
+        res.setHeader("Content-Type", "application/json");
+        res.send(JSON.stringify(newObj));
+
         console.log(newObj + " has inserted")
     });
 
-    collection.find({}).toArray(function(err, docs) {
-      // console.dir(docs);
-      obj.posts = docs;
-      res.send(JSON.stringify(obj));
-    });
+    // collection.find({}).toArray(function(err, docs) {
+    //   // console.dir(docs);
+    //   obj.posts = docs;
+    //   res.send(JSON.stringify(obj));
+    // });
 
     // collection.remove({},function(err,removed) {
     //     console.log(removed);
