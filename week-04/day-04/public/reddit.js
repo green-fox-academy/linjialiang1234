@@ -108,10 +108,9 @@ function onDownVote(i,result,newDownArrow){
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       var result = JSON.parse(xhr.responseText);
-      console.log("success put down data: " + result.posts[2].score);
-      // location.reload();
-      window.location.href = "./reddit.html";
-      
+      console.log("success put down data: ");
+      location.reload();
+      // window.location.href = "./reddit.html";
     }
   }
   xhr.open("PUT", url + "posts/" + getId + "/downvote/" + getScore, true);
