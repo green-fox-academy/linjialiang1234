@@ -206,7 +206,8 @@ app.put('/posts/:id/downvote/:score',jsonParser,function(req, res) {
 
     var newObj = {
       "id": upvoteId,    
-      "score": upvoteScore
+      "score": upvoteScore,
+      "vote": -1
     };
 
     var idValue = parseInt(newObj.id);
@@ -214,7 +215,7 @@ app.put('/posts/:id/downvote/:score',jsonParser,function(req, res) {
   
     var myquery = { id: newObj.id };
     var newvalues = { $set: {score: newObj.score}};
-    collection.updateMany({ id: idValue}, {$set:{score:scoreValue}}, function(err, res) {
+    collection.updateMany({ id: idValue}, {$set:{'score':scoreValue,'vote':-1}}, function(err, res) {
       if (err) throw err;
       console.log("1111 score document updated");
     }

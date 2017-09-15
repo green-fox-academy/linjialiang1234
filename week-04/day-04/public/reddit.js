@@ -65,7 +65,11 @@ function createScore(i,result,newDivScore) {
 function createDownArrow(i,result,newDivScore){
   var newDownArrow = document.createElement("img");
   newDownArrow.id = "downArrow";
+  if(result.posts[i].vote === -1){
+    newDownArrow.src = "./images/downvoted.png";
+  } else {
   newDownArrow.src = "./images/downvote.png";
+  }
   newDownArrow.addEventListener("click", function(){onDownVote(i,result,newDownArrow);});
   newDivScore.appendChild(newDownArrow);
 }
