@@ -167,6 +167,8 @@ app.post('/login', jsonParser, function (req, res) {
     }).toArray(function (err, result) {
 
       res.setHeader("Content-Type", "application/json");
+     
+      // console.log("00000000 " + result[0]);
       console.log("111" + result[0].owner);
    
       console.dir(result);

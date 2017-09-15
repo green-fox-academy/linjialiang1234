@@ -28,8 +28,12 @@ function postData(ownerValue) {
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
       var result = JSON.parse(xhr.responseText);
-       localStorage.setItem("loginName",result[0].owner);
-       console.log("success receviced login id data: " + result[0].owner);
+      if(result === null) {
+        localStorage.setItem("loginName", "anonymous");
+        
+      }else{
+       localStorage.setItem("loginName",result[0].owner);}
+       console.log("success receviced login id data: " + result);
        
 
       // window.history.back();

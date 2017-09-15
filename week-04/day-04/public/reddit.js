@@ -192,10 +192,10 @@ function createOwner(i,result,newDivTitle) {
 
   var loginName = localStorage.getItem("loginName");
   console.log("loginname: " + loginName);
-  if (result.posts[i].owner === undefined) {
+  if (result.posts[i].owner === null) {
     result.posts[i].owner = " by anonymous";
   } else {
-    result.posts[i].owner = loginName;
+    result.posts[i].owner = loginName
   }
  
   newOwner.innerHTML = result.posts[i].owner;
