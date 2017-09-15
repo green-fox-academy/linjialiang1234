@@ -11,26 +11,26 @@ var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 var url = 'mongodb://localhost:27017/reddit';
 
-var getPost= [
-  {
-    "id": 25,
-    "title": "Dear JavaScript",
-    "href": "http://9gag.com",
-    "timestamp": 1494339525,
-    "score": 791,
-    "owner": null,
-    "vote": 1
-  },
-  {
-    "id": 74,
-    "title": "Crockford",
-    "href": "http://9gag.com",
-    "timestamp": 1494138425,
-    "score": 567,
-    "owner": "kristof4",
-    "vote": -1
-  }
-]
+// var getPost= [
+//   {
+//     "id": 25,
+//     "title": "Dear JavaScript",
+//     "href": "http://9gag.com",
+//     "timestamp": 1494339525,
+//     "score": 791,
+//     "owner": null,
+//     "vote": 1
+//   },
+//   {
+//     "id": 74,
+//     "title": "Crockford",
+//     "href": "http://9gag.com",
+//     "timestamp": 1494138425,
+//     "score": 567,
+//     "owner": "kristof4",
+//     "vote": -1
+//   }
+// ]
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   console.log("Database created!");
@@ -85,29 +85,45 @@ app.get('/posts',function(req,res){
 
 app.post('/posts',jsonParser,function(req, res) {
   var obj = { posts: [] };
+  // var updateId = 0;
   MongoClient.connect(url, function (err, db) {
     var collection = db.collection('students');
     if (err) {
       console.log('Unable to connect to the MongoDB server. Error:', err);
     }
 
-    var newObj = {
-      'title':req.body.title,
-      'href':req.body.href,
-      'id': 111,
-      'timestamp':new Date().getTime(),
-      'score':0
-    }
-  
-    collection.insertOne(newObj,function(err,docs) {
-        if(err) throw err;
-        res.setHeader("Content-Type", "application/json");
-        res.send(JSON.stringify(newObj));
 
-        console.log(newObj + " has inserted")
+  
+    collection.findOne({},{sort:{id:-1}} , function(err,result) {
+      // console.log("1111111111111" + docs)
+       console.log(result.id);
+       var updateId = parseInt(result.id)+1;
+       console.log("newObjid:" + updateId);
+
+       var newObj = {
+        'title':req.body.title,
+        'href':req.body.href,
+        'id': updateId,
+        'timestamp':new Date().getTime(),
+        'score':0
+      }
+
+      collection.insertOne(newObj,function(err,docs) {
+        
+          if(err) throw err;
+          res.setHeader("Content-Type", "application/json");
+          res.send(JSON.stringify(docs));
+  
+          console.log(docs + " has inserted")
+          db.close();
+          
+      });
+  
+      
     });
 
-    db.close();
+   
+    
   });
 
 
@@ -150,7 +166,8 @@ app.put('/posts/:id/upvote/:score',jsonParser,function(req, res) {
 
     var newObj = {
       "id": upvoteId,    
-      "score": upvoteScore
+      "score": upvoteScore,
+      "vote" : 1
     };
 
     var idValue = parseInt(newObj.id);
@@ -158,7 +175,7 @@ app.put('/posts/:id/upvote/:score',jsonParser,function(req, res) {
   
     var myquery = { id: newObj.id };
     var newvalues = { $set: {score: newObj.score}};
-    collection.updateMany({ id: idValue}, {$set:{score:scoreValue}}, function(err, res) {
+    collection.updateMany({ id: idValue}, {$set:{'score':scoreValue, 'vote':1}}, function(err, res) {
       if (err) throw err;
       console.log("1111 score document updated");
     }

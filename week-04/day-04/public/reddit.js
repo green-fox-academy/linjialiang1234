@@ -46,7 +46,11 @@ function createArrowAndScore(i,result,newDiv){
 function createUpArrow(i,result,newDivScore){
   var newUpArrow = document.createElement("img");
   newUpArrow.id = "upArrow";
+  if(result.posts[i].vote === 1){
+    newUpArrow.src = './images/upvoted.png';
+  }else {
   newUpArrow.src = "./images/upvote.png";
+  }
   newUpArrow.addEventListener("click", function(){onUpVote(i,result,newUpArrow);});
   newDivScore.appendChild(newUpArrow);
 }
