@@ -189,9 +189,15 @@ function formatTime(seconds) {
 
 function createOwner(i,result,newDivTitle) {
   var newOwner = document.createElement("span");
-  if (result.posts[i].owner === null) {
+
+  var loginName = localStorage.getItem("loginName");
+  console.log("loginname: " + loginName);
+  if (result.posts[i].owner === undefined) {
     result.posts[i].owner = " by anonymous";
+  } else {
+    result.posts[i].owner = loginName;
   }
+ 
   newOwner.innerHTML = result.posts[i].owner;
   newOwner.id = "showOwner";
   newDivTitle.appendChild(newOwner);
