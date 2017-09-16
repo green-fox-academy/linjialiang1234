@@ -10,44 +10,11 @@ var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 var url = 'mongodb://localhost:27017/reddit';
 
-// var getPost= [
-//   {
-//     "id": 25,
-//     "title": "Dear JavaScript",
-//     "href": "http://9gag.com",
-//     "timestamp": 1494339525,
-//     "score": 791,
-//     "owner": null,
-//     "vote": 1
-//   },
-//   {
-//     "id": 74,
-//     "title": "Crockford",
-//     "href": "http://9gag.com",
-//     "timestamp": 1494138425,
-//     "score": 567,
-//     "owner": "kristof4",
-//     "vote": -1
-//   }
-// ]
 MongoClient.connect(url, function (err, db) {
   if (err) throw err;
   console.log("Database created!");
-  // db.createCollection("students", function(err, res){
-  //      if (err) throw err;
-  //   console.log("Collection created!");
-  //   //   //   db.close();
-
-  // });
   var collection = db.collection('students');
-  //   // if (err) {
-  //   //   console.log('Unable to connect to the MongoDB server. Error:', err);
-  //   // }
-  //   // console.log('Connection established to ' + url);
-  // collection.insertMany(getPost, function(err, result) {
-  //    console.log("Inserted students into the document collection");
-  //  });
-
+ 
   collection.find({}).toArray(function (err, docs) {
     console.dir(docs);
 
@@ -59,13 +26,16 @@ app.get('/hello', function (req, res) {
   res.send('hello world');
 })
 app.listen(8080);
+
 //lists all the posts
+
+
 app.get('/', function (req, res) {
-  var obj = {
-    posts: []
-  };
   res.sendFile(__dirname + "/public/reddit.html");
 })
+
+
+
 
 app.get('/posts', function (req, res) {
   var obj = {
@@ -90,21 +60,13 @@ app.post('/posts', jsonParser, function (req, res) {
   var obj = {
     posts: []
   };
-  // var updateId = 0;
   MongoClient.connect(url, function (err, db) {
     var collection = db.collection('students');
     if (err) {
       console.log('Unable to connect to the MongoDB server. Error:', err);
     }
 
-
-
-    collection.findOne({}, {
-      sort: {
-        id: -1
-      }
-    }, function (err, result) {
-      // console.log("1111111111111" + docs)
+    collection.findOne({}, {sort: {id: -1}}, function (err, result) {
       console.log(result.id);
       var updateId = parseInt(result.id) + 1;
       console.log("newObjid:" + updateId);
@@ -119,17 +81,12 @@ app.post('/posts', jsonParser, function (req, res) {
       }
 
       collection.insertOne(newObj, function (err, docs) {
-
         if (err) throw err;
         res.setHeader("Content-Type", "application/json");
         res.send(JSON.stringify(docs));
-
         console.log(docs + " has inserted")
         db.close();
-
       });
-
-
     });
 
 
@@ -218,9 +175,7 @@ app.put('/posts/:id/upvote/:score', jsonParser, function (req, res) {
   };
   var upvoteId = req.params.id;
   var upvoteScore = req.params.score;
-  // upvoteScore += 1;
-  console.log("123: " + req.params.id)
-  console.log("234: " + req.params.score);
+ 
   MongoClient.connect(url, function (err, db) {
     var collection = db.collection('students');
     if (err) {
@@ -244,14 +199,7 @@ app.put('/posts/:id/upvote/:score', jsonParser, function (req, res) {
         score: newObj.score
       }
     };
-    collection.updateMany({
-      id: idValue
-    }, {
-      $set: {
-        'score': scoreValue,
-        'vote': 1
-      }
-    }, function (err, res) {
+    collection.updateMany({id: idValue}, {$set: {'score': scoreValue,'vote': 1}}, function (err, res) {
       if (err) throw err;
       console.log("1111 score document updated");
     });
