@@ -97,8 +97,10 @@ function onUpVote(i,result,newUpArrow){
       location.reload();
     }
   }
-  console.log("getIdis " + putData.id + " " + putData.score);
-  xhr.open("PUT", url + "posts/" + getId + "/upvote/" + getScore, true);
+  // console.log("getIdis " + putData.id + " " + putData.score);
+  // xhr.open("PUT", url + "posts/" + getId + "/upvote/" + getScore, true);
+  xhr.open("PUT", url + "posts/" + getId + "/upvote", true);
+  
   xhr.setRequestHeader("Accept", "application/json");
   xhr.send();
 }

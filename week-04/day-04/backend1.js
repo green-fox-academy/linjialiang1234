@@ -34,4 +34,11 @@ app.post("/posts", jsonParser, function(req,res) {
     res.send(data);
   });
 });
+
+app.put("/posts/:id/upvote", function(req,res){
+  let id = req.params.id;
+  db.upVote(id,function(data) {
+    res.send(data);
+  });
+});
 app.listen(8080);
