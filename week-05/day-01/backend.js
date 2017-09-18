@@ -41,5 +41,11 @@ app.post("/api/todos", jsonParser, function(req,res) {
   });
 });
 
+app.put("/api/todos/:id", function(req,res){
+  let id = req.params.id;
+  db.updateState(id,function(data) {
+    res.send(data);
+  });
+});
 
 app.listen(8090);

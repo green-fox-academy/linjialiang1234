@@ -89,11 +89,28 @@ function createTodo(body,callback){
   })
 
 }
+
+function updateState(id,callback) {
+  MongoClient.connect(url, function (err, db) {
+    var todoDB = db.collection("todo");
+    var myquery = {"_id": mongodb.ObjectId(id)};
+    var newvalue = {$set: {state : 1}};
+    todoDB.find({"_id": mongodb.ObjectId(id)}).toArray(function(err, res) {
+      
+    todoDB.updateOne(myquery, newvalue,function(err, res2) {
+          db.close();
+          callback(res);
+    });
+  });
+  });
+}
+
 module.exports = {
   createDB : createDB,
   showData : showData,
   showSingleData : showSingleData,
-  createTodo : createTodo
+  createTodo : createTodo,
+  updateState : updateState
   // createPost : createPost,
   // upVote : upVote,
   // downVote : downVote
