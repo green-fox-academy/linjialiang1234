@@ -57,9 +57,25 @@ function showData(callback) {
   })
 }
 
+function showSingleData(id,callback) {
+  MongoClient.connect(url, function(err,db) {
+    var todoDB = db.collection("todo");
+    todoDB.find({"_id": mongodb.ObjectId(id)}).toArray(function(err, result) {
+      if(err) throw err;
+      count = result.length;
+      obj.todos = result;
+      db.close();
+      callback(obj);
+    })
+  })
+  
+
+}
+
 module.exports = {
   createDB : createDB,
   showData : showData,
+  showSingleData : showSingleData
   // createPost : createPost,
   // upVote : upVote,
   // downVote : downVote

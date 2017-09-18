@@ -22,6 +22,13 @@ app.get("/api/todos", function(req,res) {
   })
 })
 
+app.get("/api/todos/:id", function(req,res)  {
+  let id = req.params.id;
+  // console.log("123" + id);
+  db.showSingleData(id,function(data) {
+    res.send(data);
+  });
+});
 
 
 app.listen(8090);
