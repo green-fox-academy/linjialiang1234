@@ -282,9 +282,7 @@ app.delete('/posts/:id', function (req, res) {
       console.log('Unable to connect to the MongoDB server. Error:', err);
     }
 
-    collection.remove({
-      id: deletedId
-    }, function (err, result) {
+    collection.remove({id: deletedId}, function (err, result) {
       console.log(result);
     });
 
