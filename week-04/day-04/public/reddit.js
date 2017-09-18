@@ -84,10 +84,10 @@ function onUpVote(i,result,newUpArrow){
   var getScore = result.posts[i].score;
   var xhr = new XMLHttpRequest();
 
-  var putData = {
-    "id": getId,
-    "score":getScore 
-  };
+  // var putData = {
+  //   "id": getId,
+  //   // "score":getScore 
+  // };
   // var jSONPutData = JSON.stringify(putData);
   
   xhr.onreadystatechange = function () {
@@ -99,7 +99,7 @@ function onUpVote(i,result,newUpArrow){
   }
   // console.log("getIdis " + putData.id + " " + putData.score);
   // xhr.open("PUT", url + "posts/" + getId + "/upvote/" + getScore, true);
-  xhr.open("PUT", url + "posts/" + getId + "/upvote", true);
+  xhr.open("PUT", url + "api/todos/" + getId , true);
   
   xhr.setRequestHeader("Accept", "application/json");
   xhr.send();
