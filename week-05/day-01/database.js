@@ -105,12 +105,24 @@ function updateState(id,callback) {
   });
 }
 
+function deleteTodo(id, callback){
+  MongoClient.connect(url, function(err, db){
+      var todoDB = db.collection("todo");
+
+      todoDB.remove({"_id" : mongodb.ObjectId(id)}, function(err,res){
+          callback(res);
+      });
+  });
+}
+
+
 module.exports = {
   createDB : createDB,
   showData : showData,
   showSingleData : showSingleData,
   createTodo : createTodo,
-  updateState : updateState
+  updateState : updateState,
+  deleteTodo : deleteTodo
   // createPost : createPost,
   // upVote : upVote,
   // downVote : downVote

@@ -48,4 +48,12 @@ app.put("/api/todos/:id", function(req,res){
   });
 });
 
+app.delete("/api/todos/:id", function(req, res){
+  let id = req.params.id;
+  
+  db.deleteTodo(id, function(data){
+      res.send(data);
+  });
+});
+
 app.listen(8090);
