@@ -83,9 +83,30 @@ function upVote(id,callback) {
     });
   });
 }
+
+function downVote(id,callback) {
+  MongoClient.connect(url, function(err,db) {
+    var redditDB = db.collection("reddit");
+
+    redditDB.findOne({"id" : parseInt(id)}, function(err,res) {
+      if(res.vote!== -1) {
+        res.score--;
+        res.vote--;
+        redditDB.update({"id" : parseInt(id)},res,function(err,res2) {
+          db.close();
+          callback(res);
+        });
+      }else{
+        callback(res);
+      }
+    });
+
+  });
+}
 module.exports = {
   createDB : createDB,
   showData : showData,
   createPost : createPost,
-  upVote : upVote
+  upVote : upVote,
+  downVote : downVote
 }
