@@ -1,0 +1,59 @@
+#mainContent {
+  width : 80%;
+  height: 80%;
+  background-color: orangered;
+  margin: 0px auto;
+}
+
+#nav {
+  width: 90%;
+  height: 10%;
+  /* border: 1px solid balck; */
+  /* background: transparent; */
+
+
+}
+
+#ownerInput {
+  padding: 10px 0px;
+  width : 80%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+  color: white;
+  margin-left: 20px;
+  font-size: 25px;
+  
+}
+
+#submitButton {
+  padding: 10px 0px;
+  width: 15%;
+  background: transparent;
+  border: none;
+  font-size: 40px;
+}
+
+.todos{
+  margin-top: 10px;
+}
+.singleTodo {
+  display: inline-block;
+  border: 1px solid black;
+  width: 25%;
+  background-color: rgb(212, 184, 184);
+  margin: 5px 25px;
+  
+}
+
+.description {
+  height: 80px;
+  font-size: 20px;
+}
+
+.complete, .delete {
+  display: inline-block;
+  margin-left: 15px;
+  margin-bottom: 5px;
+
+}

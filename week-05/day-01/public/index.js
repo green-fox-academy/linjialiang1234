@@ -2,6 +2,14 @@ var url = "http://localhost:8090/";
 window.addEventListener('load', init);
 
 function init(){
+  
+  var submitButton = document.getElementById("submitButton");
+  var submitValue = document.getElementById("ownerInput");
+  submitButton.addEventListener("click", function () {
+    onSumbit(submitValue);
+  });
+
+
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
@@ -13,7 +21,7 @@ function init(){
         var newDiv = document.createElement("div");
         newDiv.className = "singleTodo";
         getTodoDiv.appendChild(newDiv);
-        createASinglePost(i,result,newDiv);
+        createASingleTodo(i,result,newDiv);
         // createArrowAndScore(i,result,newDiv);
         // createTitleDateAuthorModifyAndRemovve(i,result,newDiv);
       }
@@ -23,11 +31,39 @@ function init(){
   xhr.send();
 }
 
-function createASinglePost(i,result,newDiv){
+function onSumbit(submitValue) {
+  var xhr = new XMLHttpRequest();
+  let postTodo = {
+      "description": submitValue.value
+  };
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      var result = JSON.parse(xhr.responseText);
+      console.log("success receviced data: " + result);
+      // window.history.back();
+      location.reload();
+      
+    }
+  }
+  xhr.open("POST", url + "api/todos", true);
+  xhr.setRequestHeader("Accept", "application/json");
+  xhr.setRequestHeader("Content-type", "application/json");
+  xhr.send(JSON.stringify(postTodo));
+}
+
+
+
+
+
+
+function createASingleTodo(i,result,newDiv){
   var newDescription = document.createElement("div");
   // newDivScore.id = "secondColumn";
   newDescription.className = "description";
   newDescription.innerHTML = result.todos[i].description;
+  if(result.todos[i].state === 1) {
+    newDescription.style.textDecoration = "line-through";
+  }
   newDiv.appendChild(newDescription);
 
   createComplete(i,result,newDiv);

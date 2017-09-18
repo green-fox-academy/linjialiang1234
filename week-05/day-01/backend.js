@@ -31,11 +31,12 @@ app.get("/api/todos/:id", function(req,res)  {
 });
 
 app.post("/api/todos", jsonParser, function(req,res) {
+  console.log(req.body.description);
+  
   var body = {
     "description" : req.body.description,
     "state" : 0
   };
-  console.log("123");
   db.createTodo(body, function(data) {
     res.send(data);
   });
