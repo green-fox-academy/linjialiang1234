@@ -72,10 +72,28 @@ function showSingleData(id,callback) {
 
 }
 
+function createTodo(body,callback){
+  MongoClient.connect(url, function(err,db) {
+    var redditDB = db.collection("todo");
+
+    // body.description = 0;
+    // body.vote = 0;
+    // body.timestamp = new Date().getTime();
+    // body.owner = username || null;
+
+    redditDB.insertOne(body, function(err,res) {
+      // obj.todos = 
+      callback(body);
+    });
+    db.close();
+  })
+
+}
 module.exports = {
   createDB : createDB,
   showData : showData,
-  showSingleData : showSingleData
+  showSingleData : showSingleData,
+  createTodo : createTodo
   // createPost : createPost,
   // upVote : upVote,
   // downVote : downVote
