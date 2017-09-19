@@ -23,9 +23,7 @@ function createDB(){
       console.log('Connection established to ' + url);
 
       var todoDB = db.collection("todo");
-      // redditDB.remove();
       todoDB.insertMany(defaultData, function(err, res){
-         // console.log(res.insertedCount);
       });
       db.close();
   }); 
@@ -35,7 +33,9 @@ function showData(callback) {
   MongoClient.connect(url, function(err,db) {
     var todoDB = db.collection("todo");
     todoDB.find({}).toArray(function(err, result) {
-      if(err) throw err;
+      if(err) {
+        obj.error = "Something went wrong."
+      };
       count = result.length;
       obj.todos = result;
       db.close();
@@ -68,26 +68,17 @@ function showSingleData(id,callback) {
       callback(obj);
     })
   })
-  
-
 }
 
 function createTodo(body,callback){
   MongoClient.connect(url, function(err,db) {
     var redditDB = db.collection("todo");
 
-    // body.description = 0;
-    // body.vote = 0;
-    // body.timestamp = new Date().getTime();
-    // body.owner = username || null;
-
     redditDB.insertOne(body, function(err,res) {
-      // obj.todos = 
       callback(body);
     });
     db.close();
   })
-
 }
 
 function updateState(id,callback) {
@@ -108,13 +99,11 @@ function updateState(id,callback) {
 function deleteTodo(id, callback){
   MongoClient.connect(url, function(err, db){
       var todoDB = db.collection("todo");
-
       todoDB.remove({"_id" : mongodb.ObjectId(id)}, function(err,res){
           callback(res);
       });
   });
 }
-
 
 module.exports = {
   createDB : createDB,
@@ -123,7 +112,4 @@ module.exports = {
   createTodo : createTodo,
   updateState : updateState,
   deleteTodo : deleteTodo
-  // createPost : createPost,
-  // upVote : upVote,
-  // downVote : downVote
 }

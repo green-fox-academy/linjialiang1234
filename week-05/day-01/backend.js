@@ -9,51 +9,46 @@ var jsonParser = bodyParser.json();
 
 app.use("/", express.static("public"));
 
-
-
-app.get("/hello", function(req,res) {
+app.get("/hello", function (req, res) {
   db.createDB();
   res.send("hello world");
 });
 
-app.get("/api/todos", function(req,res) {
-  db.showData(function(data) {
+app.get("/api/todos", function (req, res) {
+  db.showData(function (data) {
     res.send(data);
+    
   })
 })
 
-app.get("/api/todos/:id", function(req,res)  {
+app.get("/api/todos/:id", function (req, res) {
   let id = req.params.id;
-  // console.log("123" + id);
-  db.showSingleData(id,function(data) {
+  db.showSingleData(id, function (data) {
     res.send(data);
   });
 });
 
-app.post("/api/todos", jsonParser, function(req,res) {
-  console.log(req.body.description);
-  
+app.post("/api/todos", jsonParser, function (req, res) {
   var body = {
-    "description" : req.body.description,
-    "state" : 0
+    "description": req.body.description,
+    "state": 0
   };
-  db.createTodo(body, function(data) {
+  db.createTodo(body, function (data) {
     res.send(data);
   });
 });
 
-app.put("/api/todos/:id", function(req,res){
+app.put("/api/todos/:id", function (req, res) {
   let id = req.params.id;
-  db.updateState(id,function(data) {
+  db.updateState(id, function (data) {
     res.send(data);
   });
 });
 
-app.delete("/api/todos/:id", function(req, res){
+app.delete("/api/todos/:id", function (req, res) {
   let id = req.params.id;
-  
-  db.deleteTodo(id, function(data){
-      res.send(data);
+  db.deleteTodo(id, function (data) {
+    res.send(data);
   });
 });
 
