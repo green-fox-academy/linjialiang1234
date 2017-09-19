@@ -1,0 +1,144 @@
+body {
+  background: linear-gradient(rgba(255, 255, 255, 0.90), #B3B0B9);
+}
+
+.viewer {
+  width: 640px;
+  height: 360px;
+  margin: 110px auto;
+  position: relative;
+  box-shadow: 10px 10px 5px #888888;
+}
+
+.leftarrow {
+  width: 50px;
+  height: 100%;
+  position: absolute;
+  background: linear-gradient(rgba(255, 255, 255, 0.90), #EEECF3);
+}
+
+.leftarrow a {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+}
+
+.leftArrowImage:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.images {
+  width: 540px;
+  height: 360px;
+  position: absolute;
+  left: 50px;
+}
+
+.photo {
+  height: 360px;
+  width: 540px;
+}
+
+.photo img {
+  height: 100%;
+  width: 100%;
+}
+
+.description {
+  height: 100px;
+  width: 540px;
+  position: absolute;
+  top: 260px;
+  background-color: black;
+  color: white;
+  opacity: 0.6;
+}
+
+.description h3,
+.description p {
+  margin-left: 10px;
+}
+
+.rightarrow {
+  width: 50px;
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  background: linear-gradient(rgba(255, 255, 255, 0.90), #EEECF3);
+}
+
+.rightarrow a {
+  position: absolute;
+  top: 50%;
+  right: 25%;
+  transform: rotate(180deg);
+}
+
+.rightArrowImage:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.thumbnails {
+  width: 400px;
+  height: 80px;
+  margin: -60px auto 0px;
+  position: relative;
+}
+
+.thumbnails a {
+  width: 60px;
+  height: 60px;
+  border: 1px solid white;
+  display: inline-block;
+  margin-left: 4px;
+  margin-top: 3px;
+  padding: 5px;
+  background-color: #EEECF3;
+}
+
+.thumbnails a img {
+  height: 60px;
+  width: 60px;
+}
+
+.active,
+.dot:hover {
+  background-color: #717171;
+  cursor: pointer;
+}
+
+.dot {
+  position: relative;
+}
+
+.tooltiptext {
+  display: none;
+  width: 60px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: -50%;
+  left: 90%;
+  margin-left: -60px;
+}
+
+.tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: -30%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.dot:hover .tooltiptext {
+  display: block;
+}
