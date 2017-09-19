@@ -5,7 +5,7 @@ var ReactDOM = require('react-dom');
 var TodoComponent = React.createClass({
   getInitialState:function(){
     return {
-      todos: ['wash up','eat some cheese', 'take a nap']
+      todos: ['wash up','eat some cheese', 'take a nap','buy flowers']
      // age:30
     }
   },
@@ -13,7 +13,7 @@ var TodoComponent = React.createClass({
     var todos = this.state.todos;
     todos = todos.map(function(item, index) {
       return (
-        <li>{item}</li>
+        <TodoItem item={item} key={index}/>
       );
     });
     return (
@@ -23,8 +23,21 @@ var TodoComponent = React.createClass({
           {/* <ListComponent todos={this.state.todos} /> */} 
         </div>
     );
-  }
+  }//render
 });
+
+//Create TodiItem component
+var TodoItem = React.createClass({
+  render:function() {
+    return(
+      <li>
+        <div className="todo-item">
+          <span className="item-name">{this.props.item}</span>
+        </div>
+      </li>
+    );
+  }
+})
 
 //put component into html page
 ReactDOM.render(<TodoComponent />,document.getElementById("todo-wrapper"))
