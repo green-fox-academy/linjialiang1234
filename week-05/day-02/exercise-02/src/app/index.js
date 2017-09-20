@@ -22,6 +22,7 @@ var App = React.createClass({
   render:function() {
     return (
       <div>
+      <Search title={this.state.title} changeCurrentImg={this.changeCurrentImg} imageSrc={this.state.imageSrc}/>
       <Viewer currentImg = {this.state.currentImg} description = {this.state.description} imageSrc={this.state.imageSrc} title={this.state.title}  changeCurrentImg={this.changeCurrentImg}/>
       <ThumbnailComponent/>
       </div>
@@ -33,6 +34,31 @@ var App = React.createClass({
     });
   }
 })
+
+var Search = React.createClass({
+  render: function() {
+    return (
+      <div className="search">
+        <input type="text" placeholder="Input the Image Name" className="search-text" onClick={this.handleSeach}/>
+        <button className ="search" onClick={this.handleClick}>Search</button>
+
+
+      </div>
+
+
+    )
+  },
+    handleClick: function() {
+      var textSearch = document.getElementsByClassName("search-text")[0].value;
+      var title = this.props.title;
+      var index = title.indexOf(textSearch);
+      this.props.changeCurrentImg(this.props.imageSrc[index]);
+
+    }
+
+
+
+});
 var Viewer = React.createClass({
   render:function(){
     return (
