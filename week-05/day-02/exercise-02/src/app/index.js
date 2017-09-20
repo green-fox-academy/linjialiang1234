@@ -41,11 +41,7 @@ var Search = React.createClass({
       <div className="search">
         <input type="text" placeholder="Input the Image Name" className="search-text" onClick={this.handleSeach}/>
         <button className ="search" onClick={this.handleClick}>Search</button>
-
-
       </div>
-
-
     )
   },
     handleClick: function() {
@@ -53,11 +49,7 @@ var Search = React.createClass({
       var title = this.props.title;
       var index = title.indexOf(textSearch);
       this.props.changeCurrentImg(this.props.imageSrc[index]);
-
     }
-
-
-
 });
 var Viewer = React.createClass({
   render:function(){
@@ -77,7 +69,6 @@ var LeftArrow = React.createClass({
       <div className="leftarrow">
        <a onClick={this.pressButton}><img className="leftArrowImage" src="leftarrow.svg" /></a>
     </div>
-
     );
   },
   pressButton:function(){
@@ -89,7 +80,6 @@ var LeftArrow = React.createClass({
     } else {
       index++
     }
-
     this.props.changeCurrentImg(imageSrc[index]);
   }
 

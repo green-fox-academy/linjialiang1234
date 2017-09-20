@@ -1,5 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var AddItem = require("./addItem");
 
 //Create component
 var TodoComponent = React.createClass({
@@ -20,6 +21,7 @@ var TodoComponent = React.createClass({
         <div id="todo-list">
           <p>The busiest people have the most leisure...</p>
           <ul>{todos}</ul>
+          <AddItem onAdd={this.onAdd}/>
         </div>
     );
   },//render
@@ -32,6 +34,15 @@ var TodoComponent = React.createClass({
     this.setState({
       todos:updateTodos
     });
+    },
+
+    onAdd: function(item) {
+      var updateTodos = this.state.todos;
+      updateTodos.push(item);
+      this.setState({
+        todos:updateTodos
+      })
+
     }
 });
 
