@@ -39,7 +39,7 @@ var Viewer = React.createClass({
     <div className="viewer">
       <LeftArrow currentImg={this.props.currentImg} imageSrc={this.props.imageSrc} changeCurrentImg={this.props.changeCurrentImg}/>
       <MainImage currentImg={this.props.currentImg} imageSrc={this.props.imageSrc} title={this.props.title} description={this.props.description}/>
-      <RightArrow/> 
+      <RightArrow currentImg={this.props.currentImg} imageSrc={this.props.imageSrc} changeCurrentImg={this.props.changeCurrentImg}/> 
     </div>
     )
   }
@@ -120,24 +120,23 @@ var RightArrow = React.createClass({
     return (
 
       <div className="rightarrow">
-      <a onClick={this.plusSlides}><img className="rightArrowImage" src="leftarrow.svg"/>></a>
+      <a onClick={this.pressButton}><img className="rightArrowImage" src="leftarrow.svg"/>></a>
     </div>
     )
   },
 
-  plusSlide: function() {
+  pressButton:function(){
+    var imageSrc = this.props.imageSrc;
+    var currentImg = this.props.currentImg;
+    var index = imageSrc.indexOf(currentImg);
+    if(index === 0) {
+      index = imageSrc.length - 1;
+    } else {
+      index--
+    }
 
-    // var updateImages = this.state.imageInformation
-    // var changeIndexArray = []
-    // for(var i = 0; i < updateImages.length; i++) {
-    //   updateImages[i] = updateImages[i+1];
-    //   changeIndexArray.push(updateImages[i]);
-    // }
-    // this.setState({
-    //   imageInformation : changeIndexArray
-    // });
+    this.props.changeCurrentImg(imageSrc[index]);
   }
-
 });
 
 var ThumbnailComponent = React.createClass({
