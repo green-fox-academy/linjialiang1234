@@ -1,0 +1,12 @@
+
+@mixin border {
+  img{
+  border-width: 10px;
+  @content;
+  }
+
+}
+
+@include border {
+    border-style: solid;
+  }
