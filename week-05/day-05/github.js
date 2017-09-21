@@ -1,6 +1,7 @@
 'use strict'
 var url = "https://github.com/";
 // GET /repos/:owner/:repo
+//https://api.github.com/repos/greenfox-academy/linjialiang1234/commits
 const OWNER = "linjialiang1234";
 var repo = "";
 
@@ -12,7 +13,7 @@ searchButton.addEventListener("click", searchRepository);
 function searchRepository(valueOfSeach){
   repo = valueOfSeach;
 //"repos/" + OWNER + "/" + repo
-  fetch("https://api.github.com/repos/greenfox-academy/linjialiang1234/commits").then(function(response) {
+  fetch("https://api.github.com/search/repositories?q=topic:epam-jsa").then(function(response) {
     console.log(response.status);
     if(response.status === 404) {
       // alert("Not found");
@@ -25,6 +26,7 @@ function searchRepository(valueOfSeach){
       console.log(data);
       displayInformation(data);
       displayCommitMessage(data);
+      displayRecommended(data);
      
 
     
@@ -58,6 +60,16 @@ function displayCommitMessage(data) {
   }
 }
 
+function displayRecommended(data) {
+  console.log(data.items[0].name);
+  var recommendedContent= document.getElementsByClassName("recommended-content")[0];
+  for(var i = 0; i < data.items.length; i++){
+  var singleName = document.createElement("a");
+  singleName.innerHTML = data.items[i].name;
+  recommendedContent.appendChild(singleName);
+  
+   }
+}
 // init();
 // function init() {
 //   fetch(url + "repos/" + OWNER + "/repo").then(function(response) {
