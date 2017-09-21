@@ -1,0 +1,128 @@
+
+.main-container{
+  width: 75%;
+  height: 680px;
+  background-color: purple;
+  margin: auto;
+  /* font-family: Work Sans;   */
+
+}
+
+.search-bar-container {
+  display: flex; 
+  flex-flow: row wrap; 
+  margin: 0 5% 0 5%;
+  border: 1px solid black;
+  height: 8%;
+
+
+  justify-content: space-around;
+  /* flex-grow: 1; */
+  /* align-items: center; */
+  
+}
+
+label.search-label, input.search-bar, button.search-button {
+  margin-top:1%;
+  /* flex-grow:1; */
+  /* margin-left:10%; */
+  /* margin-left:10px; */
+  /* width:50px; */
+}
+label.search-label{
+  width:35%;
+  border: 1px solid black;  
+}
+input.search-bar {
+  background: transparent;
+  border-radius: 10px;
+  width: 50%;
+}
+button.search-button{
+  border-radius: 10px;
+  width:10%
+}
+
+.description-and-authenticate {
+  border:1px solid black;
+  height:25%;
+  width: 90%;
+  display: flex;
+  margin: 1% auto;
+}
+.description {
+  width: 70%;
+  height: 80%;
+  border: 1px solid black;
+  margin:1%;
+}
+
+.repository-name {
+  border: 1px solid black;
+  height: 50%;
+}
+
+.authenticate {
+  width: 25%;
+  height: 80%;
+  border: 1px solid black;
+  margin: 1%;
+  display:flex;
+  flex-flow: column wrap; 
+  justify-content: space-around;
+}
+
+label.authenticate-label{
+  border-bottom: 1px solid black;
+  height:21%
+}
+
+input.user-name, input.password {
+  background: transparent;
+  border: 1px black solid;
+  height:21%
+  
+}
+button.login-button {
+  height:21%;
+}
+
+.commits-and-recommened-container {
+  height:60%;
+  width: 90%;
+  display: flex;
+  margin: 1% auto;
+  border: 1px solid black;
+}
+
+.commits-container {
+  width: 70%;
+  height: 95%;
+  border: 1px solid black;
+  margin:1%;
+}
+
+.commits-title {
+  border: 1px solid black;
+  height: 15%;
+
+}
+
+.recommended {
+  width: 25%;
+  height: 95%;
+  border: 1px solid black;
+  margin: 1%;
+  display:flex;
+  flex-flow: column wrap; 
+  /* justify-content: space-around; */
+}
+
+.recommended-title{
+  border: 1px solid black;
+  height: 15%;
+
+
+}
+
+
