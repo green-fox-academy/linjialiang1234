@@ -24,7 +24,7 @@ var App = React.createClass({
       <div>
       <Search title={this.state.title} changeCurrentImg={this.changeCurrentImg} imageSrc={this.state.imageSrc}/>
       <Viewer currentImg = {this.state.currentImg} description = {this.state.description} imageSrc={this.state.imageSrc} title={this.state.title}  changeCurrentImg={this.changeCurrentImg}/>
-      <ThumbnailComponent/>
+      <ThumbnailComponent currentImg = {this.state.currentImg} imageSrc={this.state.imageSrc} titile={this.state.title} changeCurrentImg={this.changeCurrentImg}/>
       </div>
     );
   },
@@ -113,24 +113,6 @@ var MainImage = React.createClass({
  
 });
 
-// var SingleImage = React.createClass({
-//   render:function() {
-//     return (
-//       // <div id="images">
-//         <div className="imageSingle">
-//           <div className="photo">
-//            <img src= {this.props.item.imageSrc}/>
-//           </div>
-//           <div className="description">
-//              <h3>{this.props.item.title}</h3>
-//              <p>{this.props.item.description}</p>
-//           </div>
-//         </div>
-          
-//     );
-//   }
-// })
-
 var RightArrow = React.createClass({
   render:function(){
     return (
@@ -156,41 +138,19 @@ var RightArrow = React.createClass({
 });
 
 var ThumbnailComponent = React.createClass({
-  getInitialState:function() {
-    return {
-      imageInformation:[ { "title":"I love cat!", 
-                          "description": "I love it very much. Good!!! I love it very much. Good!!! I love it very much. Good!!! I love it very much. Good!!!I love it very much. Good!!!",
-                          "imageSrc": "01.jpg"},
-
-                          { "title":"I love goat!", 
-                          "description": "I love it very much. Good!!! I love it very much. Good!!! I love it very much. Good!!! I love it very much. Good!!!I love it very much. Good!!!",
-                          "imageSrc": "02.jpg"},
-
-                          { "title":"I love lion!", 
-                          "description": "I love it very much. Good!!! I love it very much. Good!!! I love it very much. Good!!! I love it very much. Good!!!I love it very much. Good!!!",
-                          "imageSrc": "03.jpg"},
-
-                          { "title":"I love mouse!", 
-                          "description": "I love it very much. Good!!! I love it very much. Good!!! I love it very much. Good!!! I love it very much. Good!!!I love it very much. Good!!!",
-                          "imageSrc": "04.jpg"},
-
-                          { "title":"I love squiral!", 
-                          "description": "I love it very much. Good!!! I love it very much. Good!!! I love it very much. Good!!! I love it very much. Good!!!I love it very much. Good!!!",
-                          "imageSrc": "05.jpg"}
-      ]
-    }
-  },
- 
   render:function() {
+    var imageSrc = this.props.imageSrc; 
+    var imagesArray = [];
+    for(var i =0; i < imageSrc.length ; i++){
+      var singleImage = <a className="dot" key={i}><span className="tooltiptext">{this.props.titile[i]}</span><img src={imageSrc[i]}/></a>
+      imagesArray.push(singleImage);
+    } 
+    
     return (
       <div className="thumbnails">
-        <a className="dot" onClick="currentSlide(1)"><span className="tooltiptext">Cat</span><img src={this.state.imageInformation[0].imageSrc}/>></a>
-        <a className="dot" onClick="currentSlide(2)"><span className="tooltiptext">Goat</span><img src={this.state.imageInformation[1].imageSrc}/>></a>
-        <a className="dot" onClick="currentSlide(3)"><span className="tooltiptext">Lion</span><img src={this.state.imageInformation[2].imageSrc}/>></a>
-        <a className="dot" onClick="currentSlide(4)"><span className="tooltiptext">Mouse</span><img src={this.state.imageInformation[3].imageSrc}/></a>
-        <a className="dot" onClick="currentSlide(5)"><span className="tooltiptext">Squiral</span><img src={this.state.imageInformation[4].imageSrc}/></a>
-      </div>
-    );
+        {imagesArray};
+    </div>
+    )
   }
 
 });
