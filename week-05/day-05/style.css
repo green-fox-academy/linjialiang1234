@@ -3,9 +3,24 @@
   width: 75%;
   height: 680px;
   background-color: purple;
-  margin: auto;
+  margin: 1% auto;
   /* font-family: Work Sans;   */
 
+}
+
+.header {
+  
+  height:5%;
+  border:1px solid black;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 5% 0 5%;
+  
+}
+
+button.git-hub,button.MDN,button.stack-overflow {
+  margin:0.5% 0% 0% 1%;
+  background-color: yellow;
 }
 
 .search-bar-container {
@@ -45,7 +60,7 @@ button.search-button{
 
 .description-and-authenticate {
   border:1px solid black;
-  height:25%;
+  height:22%;
   width: 90%;
   display: flex;
   margin: 1% auto;
@@ -60,6 +75,7 @@ button.search-button{
 .repository-name {
   border: 1px solid black;
   height: 50%;
+  background-color: yellow;
 }
 
 .authenticate {
@@ -105,6 +121,7 @@ button.login-button {
 .commits-title {
   border: 1px solid black;
   height: 15%;
+  background-color: yellow;
 
 }
 

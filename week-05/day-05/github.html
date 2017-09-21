@@ -1,57 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>GitHub Repository Lookup</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="./style.css" rel="stylesheet">
-  </head>
-  <body >
-    <div class="main-container">
-      <div class="search-bar-container">
-        <label class="search-label">greenfox-academy</label>
-        <input class="search-bar" type="text" name="search-bar" value="" placeholder="repository name">
-        <button class="search-button">Go</button>
-      </div>
 
-      <div class="description-and-authenticate">
+<head>
+  <title>GitHub Repository Lookup</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="./style.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="main-container">
+    <div class="header">
+      <button class="git-hub">Git Hub</button>
+      <button class="MDN">MDN</button>
+      <button class="stack-overflow">Stack Overflow</button>
+    </div>
+
+    <div class="search-bar-container">
+      <label class="search-label">greenfox-academy</label>
+      <input class="search-bar" type="text" name="search-bar" value="" placeholder="repository name">
+      <button class="search-button">Go</button>
+    </div>
+
+
+
+    <div class="description-and-authenticate">
       <div class="description">
-          <div class="repository-name"></div>
-          <div class="repository-description"></div>
-          <div class="repository-last-commit"></div>
+        <div class="repository-name"></div>
+        <div class="repository-description"></div>
+        <div class="repository-last-commit"></div>
       </div>
 
       <div class="authenticate">
-          <label class="authenticate-label">Authenticate</label>
-          <input class="user-name" type="text" name="user-name" value="" placeholder="Username">
-          <input class="password" type="password" name="password" value="" placeholder="Token or password">
-          <button class="login-button">Login</button>
-          
+        <label class="authenticate-label">Authenticate</label>
+        <input class="user-name" type="text" name="user-name" value="" placeholder="Username">
+        <input class="password" type="password" name="password" value="" placeholder="Token or password">
+        <button class="login-button">Login</button>
       </div>
-      </div>
+    </div>
 
-     
-      <div class="commits-and-recommened-container">
-
-
+    <div class="commits-and-recommened-container">
       <div class="commits-container">
         <div class="commits-title">Commits<span class="commits-number"></span></div>
         <div class="commits-content"></div>
-          
-          
       </div>
 
       <div class="recommended">
-          <div class="recommended-title">Recommended</div>
-          <div class="recommended-content"></div>
-          
-
+        <div class="recommended-title">Recommended</div>
+        <div class="recommended-content"></div>
       </div>
-
     </div>
-    
-
-    </div>
+  </div>
   <script src="./github.js"></script>
-  </body>
+</body>
+
 </html>

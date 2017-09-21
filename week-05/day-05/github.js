@@ -12,7 +12,7 @@ searchButton.addEventListener("click", searchRepository);
 function searchRepository(valueOfSeach){
   repo = valueOfSeach;
 //"repos/" + OWNER + "/" + repo
-  fetch("https://api.github.com/repos/linjialiang1234/test123").then(function(response) {
+  fetch("https://api.github.com/repos/greenfox-academy/linjialiang1234/commits").then(function(response) {
     console.log(response.status);
     if(response.status === 404) {
       // alert("Not found");
@@ -24,9 +24,14 @@ function searchRepository(valueOfSeach){
       // loadPage(data.messages);
       console.log(data);
       displayInformation(data);
+      displayCommitMessage(data);
      
 
+    
       //create 404 alert
+
+      //display commit message
+
     })
   }
 
@@ -37,8 +42,20 @@ function searchRepository(valueOfSeach){
 function displayInformation(data) {
   document.getElementsByClassName("repository-name")[0].innerHTML = data.name;
   document.getElementsByClassName("repository-description")[0].innerHTML = data.description;
-  document.getElementsByClassName("repository-last-commit")[0].innerHTML = data.created_at;
+  document.getElementsByClassName("repository-last-commit")[0].innerHTML = "Last updated at " + data.created_at;
 
+}
+
+function displayCommitMessage(data) {
+  var commitsContent = document.getElementsByClassName("commits-content")[0];
+  for(var i = 0; i < data.length; i++) {
+    var singleCommitMessage = document.createElement("div");
+    singleCommitMessage.innerHTML = data[i].commit.message;
+    commitsContent.appendChild(singleCommitMessage);
+    var signleCommitterAndTime = document.createElement("div");
+    signleCommitterAndTime.innerHTML = data[i].commit.committer.name + " at " + data[i].commit.committer.date;
+    commitsContent.appendChild(signleCommitterAndTime);
+  }
 }
 
 // init();
