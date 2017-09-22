@@ -2,12 +2,67 @@
 var url = "https://github.com/";
 // GET /repos/:owner/:repo
 //https://api.github.com/repos/greenfox-academy/linjialiang1234/commits
+
+//151c9ddd42be0d62891f785cc61745669742500f ;
+//https://api.github.com/rate_limit
 const OWNER = "linjialiang1234";
 var repo = "";
 
 var valueOfSeach = document.getElementsByClassName("search-bar")[0].value;
 var searchButton = document.getElementsByClassName("search-button")[0];
 searchButton.addEventListener("click", searchRepository);
+
+var loginButton = document.getElementsByClassName("login-button")[0];
+loginButton.addEventListener("click", onAuthentication);
+
+function onAuthentication() {
+  var userName = document.getElementsByClassName("user-name")[0].value;
+  var passWord = document.getElementsByClassName("password")[0].value;
+
+  const myHeaders = new Headers();
+  myHeaders.append('Authorization', 'Basic 151c9ddd42be0d62891f785cc61745669742500f');
+
+  const myInit = {
+    method: 'GET',
+    headers: myHeaders
+  }
+  fetch("https://api.github.com/rate_limit",myInit).then(function(response) {
+    // console.log(response.json().then(function(body) {
+    //   console.log(body);
+    // }));
+
+    response.json().then(function(body) {
+     console.log(body.rate.limit);
+    });
+    // if(response.status === 404) {
+    //   // alert("Not found");
+    //   document.getElementsByClassName("search-bar")[0].setAttribute("placeholder", "Not Found");
+    // } else {
+    // console.log(response.headers);
+
+
+    // response.json().then(function(data) {
+    //   // messagesKeeper = data.messages;
+    //   // loadPage(data.messages);
+    //   console.log(data);
+    //   displayInformation(data);
+    //   displayCommitMessage(data);
+    //   displayRecommended(data);
+    //   //create 404 alert
+
+    //   //display commit message
+
+    // })
+
+
+  // }
+
+  })
+
+
+
+
+}
 
 
 function searchRepository(valueOfSeach){
@@ -27,9 +82,6 @@ function searchRepository(valueOfSeach){
       displayInformation(data);
       displayCommitMessage(data);
       displayRecommended(data);
-     
-
-    
       //create 404 alert
 
       //display commit message
