@@ -25,7 +25,21 @@ function init() {
 }
 
 function displayRecommended() {
-  fetch("https://api.github.com/search/repositories?q=topic:epam-jsa").then(function (response) {
+  var token = localStorage.getItem("token");
+  console.log("token; " + token);
+  const myHeaders = new Headers();
+  var myInit = {};
+  if(token !== null) {
+    myHeaders.append('Authorization', 'Basic ' + token);
+     myInit = {
+      method: 'GET',
+      headers: myHeaders
+    }
+  } else {
+     myInit = {method: 'GET'};
+  }
+  
+  fetch("https://api.github.com/search/repositories?q=topic:epam-jsa", myInit).then(function (response) {
     console.log(response.status);
     if (response.status === 404) {
       document.getElementsByClassName("search-bar")[0].setAttribute("placeholder", "Not Found");
@@ -69,9 +83,25 @@ function searchNameRepository(newSearchName) {
 function searchAnotherRepository(newSearchName) {
   var valueOfSeach = newSearchName;
   repo = valueOfSeach;
+
+  var token = localStorage.getItem("token");
+  console.log("token; " + token);
+  const myHeaders = new Headers();
+  var myInit = {};
+  if(token !== null) {
+    myHeaders.append('Authorization', 'Basic ' + token);
+  
+     myInit = {
+      method: 'GET',
+      headers: myHeaders
+    }
+  } else {
+     myInit = {method: 'GET'};
+  }
+  
   //"repos/" + OWNER + "/" + repo
   console.log("repo: " + repo);
-  fetch(url + "repos/greenfox-academy/" + valueOfSeach).then(function (response) {
+  fetch(url + "repos/greenfox-academy/" + valueOfSeach, myInit).then(function (response) {
     console.log(response.status);
     if (response.status === 404) {
       // alert("Not found");
@@ -95,8 +125,24 @@ function searchRepository() {
   var valueOfSeach = document.getElementsByClassName("search-bar")[0].value;
   repo = valueOfSeach;
   //"repos/" + OWNER + "/" + repo
+
+  var token = localStorage.getItem("token");
+  console.log("token; " + token);
+  const myHeaders = new Headers();
+  var myInit = {};
+  if(token !== null) {
+    myHeaders.append('Authorization', 'Basic ' + token);
+  
+     myInit = {
+      method: 'GET',
+      headers: myHeaders
+    }
+  } else {
+     myInit = {method: 'GET'};
+  }
+  
   console.log("repo: " + repo);
-  fetch(url + "repos/greenfox-academy/" + "ChiuMungZitAlexander").then(function (response) {
+  fetch(url + "repos/greenfox-academy/" + repo, myInit).then(function (response) {
     console.log(response.status);
     if (response.status === 404) {
       // alert("Not found");
@@ -116,19 +162,37 @@ function searchRepository() {
 
 function onAuthentication() {
   var userName = document.getElementsByClassName("user-name")[0].value;
-  var passWord = document.getElementsByClassName("password")[0].value;
+  var token = document.getElementsByClassName("password")[0].value;
 
+  // token = "151c9ddd42be0d62891f785cc61745669742500f";
+
+  localStorage.setItem('user-name', userName);
+  localStorage.setItem('token', token);
+  
   const myHeaders = new Headers();
-  myHeaders.append('Authorization', 'Basic 151c9ddd42be0d62891f785cc61745669742500f');
+  myHeaders.append('Authorization', 'Basic ' + token);
 
   const myInit = {
     method: 'GET',
     headers: myHeaders
   }
   fetch("https://api.github.com/rate_limit", myInit).then(function (response) {
+
+    if (response.status !== 200) {
+        alert("not a token");
+    } else {
+
+      document.getElementsByClassName("user-name")[0].value = "";
+      document.getElementsByClassName("password")[0].value = "";
+
     response.json().then(function (body) {
+      console.log(body);
       console.log(body.rate.limit);
     });
+
+  }
+
+
   })
 }
 
@@ -141,8 +205,24 @@ function displayInformation(data) {
 function displayCommitMessage(data,valueOfSeach) {
   var myNode = document.getElementsByClassName("commits-content")[0];
   myNode.innerHTML = '';
+
+  var token = localStorage.getItem("token");
+  console.log("token; " + token);
+  const myHeaders = new Headers();
+  var myInit = {};
+  if(token !== null) {
+    myHeaders.append('Authorization', 'Basic ' + token);
   
-  fetch("https://api.github.com/repos/greenfox-academy/" + valueOfSeach + "/commits").then(function (response) {
+     myInit = {
+      method: 'GET',
+      headers: myHeaders
+    }
+  } else {
+     myInit = {method: 'GET'};
+  }
+  
+  
+  fetch("https://api.github.com/repos/greenfox-academy/" + valueOfSeach + "/commits", myInit).then(function (response) {
     response.json().then(function (data) {
       
        console.log("commit message: " +data);
