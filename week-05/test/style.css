@@ -53,9 +53,9 @@ label.search-label{
 }
 input.search-bar {
   background: transparent;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   width: 50%;
-  color:#757575;
+  /* color:#757575; */
   font-weight: bold;
   font-size: 30px;
   border-bottom: 1px solid black;
@@ -123,12 +123,28 @@ label.authenticate-label{
 input.user-name, input.password {
   background: transparent;
   /* border: 1px black solid; */
-  height:21%
+  height:20%;
+  /* border-bottom: 1px solid black; */
+  border:none;
+  font-size: 20px;
   
 }
+
+input.user-name:focus {
+  border: none;
+
+}
+
+input.password:focus {
+  border: none
+}
+
+
 button.login-button {
-  height:21%;
+  height:23%;
   background-color: #215584;
+    font-size: 20px;
+
 }
 
 .commits-and-recommened-container {
@@ -195,6 +211,10 @@ button.login-button {
 
 .recommended-content a:hover {
   cursor: pointer;
+}
+
+.recommended-content a {
+  /* padding-top: 2%; */
 }
 
 

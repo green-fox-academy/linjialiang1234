@@ -29,16 +29,18 @@ function displayRecommended() {
   console.log("token; " + token);
   const myHeaders = new Headers();
   var myInit = {};
-  if(token !== null) {
+  if (token !== null) {
     myHeaders.append('Authorization', 'Basic ' + token);
-     myInit = {
+    myInit = {
       method: 'GET',
       headers: myHeaders
     }
   } else {
-     myInit = {method: 'GET'};
+    myInit = {
+      method: 'GET'
+    };
   }
-  
+
   fetch("https://api.github.com/search/repositories?q=topic:epam-jsa", myInit).then(function (response) {
     console.log(response.status);
     if (response.status === 404) {
@@ -60,7 +62,7 @@ function displaySingleRecommended(data) {
     singleName.innerHTML = data.items[i].name;
     singleName.className = data.items[i].name;
 
-    var newSearchName =singleName.className
+    var newSearchName = singleName.className
     // singleName.style.margin = "2% 0 0 0";
     singleName.addEventListener("click", function (event) {
       searchNameRepository(this.className)
@@ -72,12 +74,6 @@ function displaySingleRecommended(data) {
 function searchNameRepository(newSearchName) {
   console.log("searchName:" + newSearchName);
   searchAnotherRepository(newSearchName);
-
-  
-
-  // var newSearchValue = document.getElementsByClassName(searchName);
-  // console.log("123: " + newSearchValue);
-  // searchRepository(newSearchValue);
 }
 
 function searchAnotherRepository(newSearchName) {
@@ -88,17 +84,19 @@ function searchAnotherRepository(newSearchName) {
   console.log("token; " + token);
   const myHeaders = new Headers();
   var myInit = {};
-  if(token !== null) {
+  if (token !== null) {
     myHeaders.append('Authorization', 'Basic ' + token);
-  
-     myInit = {
+
+    myInit = {
       method: 'GET',
       headers: myHeaders
     }
   } else {
-     myInit = {method: 'GET'};
+    myInit = {
+      method: 'GET'
+    };
   }
-  
+
   //"repos/" + OWNER + "/" + repo
   console.log("repo: " + repo);
   fetch(url + "repos/greenfox-academy/" + valueOfSeach, myInit).then(function (response) {
@@ -109,17 +107,15 @@ function searchAnotherRepository(newSearchName) {
     } else {
       // console.log(response.headers);
       response.json().then(function (data) {
-       
+        document.getElementsByClassName("search-bar")[0].value = data.name;
         console.log(data);
         displayInformation(data);
-        displayCommitMessage(data,valueOfSeach);
+        displayCommitMessage(data, valueOfSeach);
       })
     }
 
   })
 }
-
-
 
 function searchRepository() {
   var valueOfSeach = document.getElementsByClassName("search-bar")[0].value;
@@ -130,30 +126,32 @@ function searchRepository() {
   console.log("token; " + token);
   const myHeaders = new Headers();
   var myInit = {};
-  if(token !== null) {
+  if (token !== null) {
     myHeaders.append('Authorization', 'Basic ' + token);
-  
-     myInit = {
+
+    myInit = {
       method: 'GET',
       headers: myHeaders
     }
   } else {
-     myInit = {method: 'GET'};
+    myInit = {
+      method: 'GET'
+    };
   }
-  
+
   console.log("repo: " + repo);
   fetch(url + "repos/greenfox-academy/" + repo, myInit).then(function (response) {
     console.log(response.status);
     if (response.status === 404) {
-      alert("Not found");
+      // alert("Not found");
       document.getElementsByClassName("search-bar")[0].setAttribute("placeholder", "Not Found");
     } else {
       // console.log(response.headers);
       response.json().then(function (data) {
-       
+
         console.log(data);
         displayInformation(data);
-        displayCommitMessage(data,valueOfSeach);
+        displayCommitMessage(data, valueOfSeach);
       })
     }
 
@@ -168,7 +166,7 @@ function onAuthentication() {
 
   localStorage.setItem('user-name', userName);
   localStorage.setItem('token', token);
-  
+
   const myHeaders = new Headers();
   myHeaders.append('Authorization', 'Basic ' + token);
 
@@ -179,20 +177,22 @@ function onAuthentication() {
   fetch("https://api.github.com/rate_limit", myInit).then(function (response) {
 
     if (response.status !== 200) {
-        alert("not a token");
-    } else {
+      document.getElementsByClassName("user-name")[0].value = "";
+      document.getElementsByClassName("password")[0].value = "";
+      document.getElementsByClassName("user-name")[0].placeholder = "Wrong User Name";
+      document.getElementsByClassName("user-name")[0].style.borderColor = "pink";
 
+      document.getElementsByClassName("password")[0].placeholder = "Or Wrong Token";
+      document.getElementsByClassName("password")[0].style.borderColor = "pink";
+    } else {
       document.getElementsByClassName("user-name")[0].value = "";
       document.getElementsByClassName("password")[0].value = "";
 
-    response.json().then(function (body) {
-      console.log(body);
-      console.log(body.rate.limit);
-    });
-
-  }
-
-
+      response.json().then(function (body) {
+        console.log(body);
+        console.log(body.rate.limit);
+      });
+    }
   })
 }
 
@@ -202,7 +202,7 @@ function displayInformation(data) {
   document.getElementsByClassName("repository-last-commit")[0].innerHTML = "Last updated at " + data.created_at;
 }
 
-function displayCommitMessage(data,valueOfSeach) {
+function displayCommitMessage(data, valueOfSeach) {
   var myNode = document.getElementsByClassName("commits-content")[0];
   myNode.innerHTML = '';
 
@@ -210,44 +210,45 @@ function displayCommitMessage(data,valueOfSeach) {
   console.log("token; " + token);
   const myHeaders = new Headers();
   var myInit = {};
-  if(token !== null) {
+  if (token !== null) {
     myHeaders.append('Authorization', 'Basic ' + token);
-  
-     myInit = {
+
+    myInit = {
       method: 'GET',
       headers: myHeaders
     }
   } else {
-     myInit = {method: 'GET'};
+    myInit = {
+      method: 'GET'
+    };
   }
-  
-  
+
+
   fetch("https://api.github.com/repos/greenfox-academy/" + valueOfSeach + "/commits", myInit).then(function (response) {
     response.json().then(function (data) {
       var commmitLength = data.length;
       document.getElementsByClassName("commits-number")[0].innerHTML = " (" + commmitLength + ")";
-      
-       console.log("commit message: " +data);
-       var commitsContent = document.getElementsByClassName("commits-content")[0];
-       for (var i = 0; i < data.length; i++) {
-         var singleCommitMessage = document.createElement("div");
-         singleCommitMessage.innerHTML = data[i].commit.message;
-         console.log("count: " + data.length);
-         singleCommitMessage.style.fontWeight = "bold";
-         commitsContent.appendChild(singleCommitMessage);
-         var signleCommitterAndTime = document.createElement("div");
-         signleCommitterAndTime.innerHTML = data[i].commit.committer.name + " at " + data[i].commit.committer.date;
-         signleCommitterAndTime.style.color = "#597968"
-         signleCommitterAndTime.style.fontStyle = "italic";
-         signleCommitterAndTime.className = "single-committer-and-time";
-         
-         commitsContent.appendChild(signleCommitterAndTime);
-       }
-       // displayInformation(data);
-      //  displayCommitMessage(data);
-     })
-  
-  
+
+      console.log("commit message: " + data);
+      var commitsContent = document.getElementsByClassName("commits-content")[0];
+      for (var i = 0; i < data.length; i++) {
+        var singleCommitMessage = document.createElement("div");
+        singleCommitMessage.innerHTML = data[i].commit.message;
+        console.log("count: " + data.length);
+        singleCommitMessage.style.fontWeight = "bold";
+        commitsContent.appendChild(singleCommitMessage);
+        var signleCommitterAndTime = document.createElement("div");
+        signleCommitterAndTime.innerHTML = data[i].commit.committer.name + " at " + data[i].commit.committer.date;
+        signleCommitterAndTime.style.color = "#597968"
+        signleCommitterAndTime.style.fontStyle = "italic";
+        signleCommitterAndTime.className = "single-committer-and-time";
+
+        commitsContent.appendChild(signleCommitterAndTime);
+      }
+
+    })
+
+
   })
 
 
