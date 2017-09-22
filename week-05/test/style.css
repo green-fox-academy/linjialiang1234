@@ -46,18 +46,25 @@ label.search-label, input.search-bar, button.search-button {
   /* width:50px; */
 }
 label.search-label{
-  width:35%;
+  width:33%;
   border: 1px solid black;  
+  font-weight: bold;
+  font-size: 30px;
 }
 input.search-bar {
   background: transparent;
   border-radius: 10px;
   width: 50%;
+  color:#757575;
+  font-weight: bold;
+  font-size: 30px;
 }
 button.search-button{
   border-radius: 10px;
   background: transparent;
-  width:10%
+  width:10%;
+  font-weight: bold;
+  font-size: 30px;
 }
 
 .description-and-authenticate {
@@ -76,10 +83,21 @@ button.search-button{
 
 .repository-name {
   border: 1px solid black;
-  height: 50%;
+  height: 30%;
   background-color: #FFFF04;
+  font-weight: bold;
+  font-size: 25px;
 }
 
+.repository-description {
+  margin-top: 5%;
+  font-weight: bold;
+  font-size: 20px;
+}
+.repository-last-commit {
+  font-style: italic;
+  font-size: 15px;
+}
 .authenticate {
   width: 25%;
   height: 80%;
@@ -90,9 +108,15 @@ button.search-button{
   justify-content: space-around;
 }
 
+/* .authenticate-label {
+  
+} */
+
 label.authenticate-label{
   border-bottom: 1px solid black;
-  height:21%
+  height:21%;
+  font-weight: bold;
+  font-size: 25px;
 }
 
 input.user-name, input.password {
@@ -119,15 +143,25 @@ button.login-button {
   height: 95%;
   border: 1px solid black;
   margin:1%;
+  overflow: auto;
+  
 }
 
 .commits-title {
   border: 1px solid black;
-  height: 15%;
+  height: 8%;
   background-color: #FFFF04;
+  font-weight: bold;
+  font-size: 25px;
 
 }
 
+.commets-content {
+}
+
+.single-committer-and-time {
+  margin-bottom:2%;
+}
 .recommended {
   width: 25%;
   height: 95%;
@@ -140,9 +174,26 @@ button.login-button {
 
 .recommended-title{
   border: 1px solid black;
-  height: 15%;
+  height: 8%;
+  font-weight:bold;
+  font-size:25px;
+  display:flex;
+  flex-flow: row wrap;
+  
 
 
+}
+
+.recommended-content {
+  display: flex;
+  flex-flow: column wrap; 
+  
+
+  
+}
+
+.recommended-content a:hover {
+  cursor: pointer;
 }
 
 

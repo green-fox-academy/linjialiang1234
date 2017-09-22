@@ -45,6 +45,7 @@ function displaySingleRecommended(data) {
     var singleName = document.createElement("a");
     singleName.innerHTML = data.items[i].name;
     singleName.className = data.items[i].name;
+    // singleName.style.margin = "2% 0 0 0";
     singleName.addEventListener("click", function () {
       searchNameRepository(singleName.className)
     });
@@ -63,7 +64,7 @@ function searchRepository() {
   repo = valueOfSeach;
   //"repos/" + OWNER + "/" + repo
   console.log("repo: " + repo);
-  fetch(url + "repos/greenfox-academy/" + repo).then(function (response) {
+  fetch(url + "repos/greenfox-academy/" + "ChiuMungZitAlexander").then(function (response) {
     console.log(response.status);
     if (response.status === 404) {
       // alert("Not found");
@@ -115,9 +116,14 @@ function displayCommitMessage(data) {
        for (var i = 0; i < data.length; i++) {
          var singleCommitMessage = document.createElement("div");
          singleCommitMessage.innerHTML = data[i].commit.message;
+         singleCommitMessage.style.fontWeight = "bold";
          commitsContent.appendChild(singleCommitMessage);
          var signleCommitterAndTime = document.createElement("div");
          signleCommitterAndTime.innerHTML = data[i].commit.committer.name + " at " + data[i].commit.committer.date;
+         signleCommitterAndTime.style.color = "#597968"
+         signleCommitterAndTime.style.fontStyle = "italic";
+         signleCommitterAndTime.className = "single-committer-and-time";
+         
          commitsContent.appendChild(signleCommitterAndTime);
        }
        // displayInformation(data);
