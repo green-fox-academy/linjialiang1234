@@ -66,9 +66,18 @@ function displayRecommended(data) {
   for(var i = 0; i < data.items.length; i++){
   var singleName = document.createElement("a");
   singleName.innerHTML = data.items[i].name;
+  singleName.className = data.items[i].name;
+  singleName.addEventListener("click", function(){searchNameRepository(singleName.className)});
   recommendedContent.appendChild(singleName);
   
    }
+}
+
+function searchNameRepository(searchName) {
+  // var searchName = data.items[i].name;
+  var newSearchValue = document.getElementsByClassName(searchName);
+  console.log(newSearchValue);
+  searchRepository(newSearchValue);
 }
 // init();
 // function init() {
