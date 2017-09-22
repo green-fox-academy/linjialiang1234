@@ -41,23 +41,55 @@ function displayRecommended() {
 
 function displaySingleRecommended(data) {
   var recommendedContent = document.getElementsByClassName("recommended-content")[0];
-  for (var i = 0; i < data.items.length; i++) {
+  for (let i = 0; i < data.items.length; i++) {
     var singleName = document.createElement("a");
     singleName.innerHTML = data.items[i].name;
     singleName.className = data.items[i].name;
+
+    var newSearchName =singleName.className
     // singleName.style.margin = "2% 0 0 0";
-    singleName.addEventListener("click", function () {
-      searchNameRepository(singleName.className)
+    singleName.addEventListener("click", function (event) {
+      searchNameRepository(this.className)
     });
     recommendedContent.appendChild(singleName);
   }
 }
 
-function searchNameRepository(searchName) {
-  var newSearchValue = document.getElementsByClassName(searchName);
-  console.log(newSearchValue);
-  searchRepository(newSearchValue);
+function searchNameRepository(newSearchName) {
+  console.log("searchName:" + newSearchName);
+  searchAnotherRepository(newSearchName);
+
+  
+
+  // var newSearchValue = document.getElementsByClassName(searchName);
+  // console.log("123: " + newSearchValue);
+  // searchRepository(newSearchValue);
 }
+
+function searchAnotherRepository(newSearchName) {
+  var valueOfSeach = newSearchName;
+  repo = valueOfSeach;
+  //"repos/" + OWNER + "/" + repo
+  console.log("repo: " + repo);
+  fetch(url + "repos/greenfox-academy/" + valueOfSeach).then(function (response) {
+    console.log(response.status);
+    if (response.status === 404) {
+      // alert("Not found");
+      document.getElementsByClassName("search-bar")[0].setAttribute("placeholder", "Not Found");
+    } else {
+      // console.log(response.headers);
+      response.json().then(function (data) {
+       
+        console.log(data);
+        displayInformation(data);
+        displayCommitMessage(data,valueOfSeach);
+      })
+    }
+
+  })
+}
+
+
 
 function searchRepository() {
   var valueOfSeach = document.getElementsByClassName("search-bar")[0].value;
@@ -75,7 +107,7 @@ function searchRepository() {
        
         console.log(data);
         displayInformation(data);
-        displayCommitMessage(data);
+        displayCommitMessage(data,valueOfSeach);
       })
     }
 
@@ -106,9 +138,11 @@ function displayInformation(data) {
   document.getElementsByClassName("repository-last-commit")[0].innerHTML = "Last updated at " + data.created_at;
 }
 
-function displayCommitMessage(data) {
-
-  fetch("https://api.github.com/repos/greenfox-academy/linjialiang1234/commits").then(function (response) {
+function displayCommitMessage(data,valueOfSeach) {
+  var myNode = document.getElementsByClassName("commits-content")[0];
+  myNode.innerHTML = '';
+  
+  fetch("https://api.github.com/repos/greenfox-academy/" + valueOfSeach + "/commits").then(function (response) {
     response.json().then(function (data) {
       
        console.log("commit message: " +data);
