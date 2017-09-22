@@ -145,7 +145,7 @@ function searchRepository() {
   fetch(url + "repos/greenfox-academy/" + repo, myInit).then(function (response) {
     console.log(response.status);
     if (response.status === 404) {
-      // alert("Not found");
+      alert("Not found");
       document.getElementsByClassName("search-bar")[0].setAttribute("placeholder", "Not Found");
     } else {
       // console.log(response.headers);
@@ -224,12 +224,15 @@ function displayCommitMessage(data,valueOfSeach) {
   
   fetch("https://api.github.com/repos/greenfox-academy/" + valueOfSeach + "/commits", myInit).then(function (response) {
     response.json().then(function (data) {
+      var commmitLength = data.length;
+      document.getElementsByClassName("commits-number")[0].innerHTML = " (" + commmitLength + ")";
       
        console.log("commit message: " +data);
        var commitsContent = document.getElementsByClassName("commits-content")[0];
        for (var i = 0; i < data.length; i++) {
          var singleCommitMessage = document.createElement("div");
          singleCommitMessage.innerHTML = data[i].commit.message;
+         console.log("count: " + data.length);
          singleCommitMessage.style.fontWeight = "bold";
          commitsContent.appendChild(singleCommitMessage);
          var signleCommitterAndTime = document.createElement("div");
