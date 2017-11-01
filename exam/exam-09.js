@@ -3,7 +3,7 @@
 let arr = [1, 3, 8, 6, 7, 4];
 let arrayOfSecondElements = [];
 
-function result (arg) {
+function getMaxNumber (arg) {
   if(arg.length === 0) {
     return "This is a empty array, so there is no largest number."
   }
@@ -28,5 +28,5 @@ function result (arg) {
   return "The biggest element from each of its second elements is " + maxNumber + ".";
 }
 
-console.log(result(arr));
+console.log(getMaxNumber(arr));
 
