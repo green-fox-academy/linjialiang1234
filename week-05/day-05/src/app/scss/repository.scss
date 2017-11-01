@@ -1,0 +1,43 @@
+@import "mixins";
+.repository> div + div{
+    margin-top:40px;
+}
+.repository{
+    width: 60%;
+  //  padding-top: 20px;
+    ul{
+        list-style: none;
+    }
+    h1{
+        font-size: 20px;
+        // margin-top:10px;
+        // margin-bottom: 10px;
+    }
+    .repHeading{
+        padding:1px;
+        background-color: rgb(255, 255, 0);
+        display: inline-block;
+        margin: 10px 0px;
+    }
+    .reposDescription{
+        font-size:15px;
+        font-weight: bold;
+    }
+    .reposUpdatedTime{
+        font-size:14px;
+        font-style:italic;
+    }
+    .commitHeading{
+        display: inline-flex;
+        align-items: baseline;
+        p{
+            font-size:12px;
+        }
+    }
+    .commitMessage{
+        font-weight: bold;
+    }
+    .commitUpdateTime{
+        font-style: italic;
+    }
+}

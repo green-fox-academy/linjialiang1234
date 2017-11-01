@@ -1,0 +1,21 @@
+@import "variables";
+
+.recommended{
+    margin:20px;
+    width:200px;
+    p{
+        margin-bottom: 15px;
+        width: 100%;
+        font-size: 20px;
+        font-weight: bold;
+        border-bottom: 1px black solid;
+    }
+    ul{
+        list-style: none;
+        text-align: right;
+    }
+    a{
+        color:$recommendTextColor;
+        text-decoration: none;
+    }
+}

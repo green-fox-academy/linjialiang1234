@@ -1,0 +1,18 @@
+.searchBar{
+  font-weight: bold;
+  font-size: 30px;
+  input{
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid black;
+      width: 60%;
+      font-size: 30px;
+  }
+  button{
+      background: transparent;
+      border: 1px solid gray;
+      font-size: 25px;
+      font-weight: bold;
+      padding:1px;
+  }
+}

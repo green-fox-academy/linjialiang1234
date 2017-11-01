@@ -1,0 +1,9 @@
+@import "variables";
+main{
+    background-color: $contentBackground;
+    padding:10px;
+}
+.mainAndAside{
+    display: flex;
+    padding-top: 20px;
+}

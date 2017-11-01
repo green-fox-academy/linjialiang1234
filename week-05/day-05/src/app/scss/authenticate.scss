@@ -1,0 +1,29 @@
+@import "variables";
+
+.authenticate{
+    margin:20px;
+    width:200px;
+   
+    p{
+        margin-bottom: 15px;
+        width: 100%;
+        font-size: 20px;
+        font-weight: bold;
+        border-bottom: 1px black solid;
+    }
+    input{
+        margin-bottom: 8px;
+        width: 100%;
+        background: transparent;
+        border: none;
+        border-bottom: 1px black solid;
+        display: block;
+    }
+    button{
+        width: 100%;
+        background: $deepBlue;
+        border: 1px black solid;
+        display: block;
+        
+    }
+}
